@@ -28,164 +28,178 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewCarriers = new System.Windows.Forms.DataGridView();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtCarrierNo = new System.Windows.Forms.TextBox();
-            this.txtCarrierType = new System.Windows.Forms.TextBox();
-            this.txtDurableId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbDurableType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCarriers)).BeginInit();
-            this.SuspendLayout();
+            dataGridViewCarriers = new DataGridView();
+            btnNew = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
+            btnSearch = new Button();
+            txtCarrierNo = new TextBox();
+            txtCarrierType = new TextBox();
+            txtDurableId = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            cmbDurableType = new ComboBox();
+            label4 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCarriers).BeginInit();
+            SuspendLayout();
             // 
             // dataGridViewCarriers
             // 
-            this.dataGridViewCarriers.AllowUserToAddRows = false;
-            this.dataGridViewCarriers.AllowUserToDeleteRows = false;
-            this.dataGridViewCarriers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCarriers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewCarriers.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewCarriers.Name = "dataGridViewCarriers";
-            this.dataGridViewCarriers.ReadOnly = true;
-            this.dataGridViewCarriers.RowHeadersWidth = 51;
-            this.dataGridViewCarriers.RowTemplate.Height = 24;
-            this.dataGridViewCarriers.Size = new System.Drawing.Size(800, 300);
-            this.dataGridViewCarriers.TabIndex = 0;
+            dataGridViewCarriers.AllowUserToAddRows = false;
+            dataGridViewCarriers.AllowUserToDeleteRows = false;
+            dataGridViewCarriers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCarriers.Dock = DockStyle.Top;
+            dataGridViewCarriers.Location = new Point(0, 0);
+            dataGridViewCarriers.Margin = new Padding(5, 6, 5, 6);
+            dataGridViewCarriers.Name = "dataGridViewCarriers";
+            dataGridViewCarriers.ReadOnly = true;
+            dataGridViewCarriers.RowHeadersWidth = 51;
+            dataGridViewCarriers.RowTemplate.Height = 24;
+            dataGridViewCarriers.Size = new Size(1608, 620);
+            dataGridViewCarriers.TabIndex = 0;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(12, 306);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 23);
-            this.btnNew.TabIndex = 1;
-            this.btnNew.Text = "新建";
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            btnNew.Location = new Point(21, 632);
+            btnNew.Margin = new Padding(5, 6, 5, 6);
+            btnNew.Name = "btnNew";
+            btnNew.Size = new Size(131, 48);
+            btnNew.TabIndex = 1;
+            btnNew.Text = "新建";
+            btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += btnNew_Click;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(93, 306);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "编辑";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            btnEdit.Location = new Point(163, 632);
+            btnEdit.Margin = new Padding(5, 6, 5, 6);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(131, 48);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "编辑";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(174, 306);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 3;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            btnDelete.Location = new Point(304, 632);
+            btnDelete.Margin = new Padding(5, 6, 5, 6);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(131, 48);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "删除";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(627, 335);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "查询";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Location = new Point(1411, 682);
+            btnSearch.Margin = new Padding(5, 6, 5, 6);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(131, 48);
+            btnSearch.TabIndex = 4;
+            btnSearch.Text = "查询";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtCarrierNo
             // 
-            this.txtCarrierNo.Location = new System.Drawing.Point(76, 335);
-            this.txtCarrierNo.Name = "txtCarrierNo";
-            this.txtCarrierNo.Size = new System.Drawing.Size(155, 25);
-            this.txtCarrierNo.TabIndex = 5;
+            txtCarrierNo.Location = new Point(133, 692);
+            txtCarrierNo.Margin = new Padding(5, 6, 5, 6);
+            txtCarrierNo.Name = "txtCarrierNo";
+            txtCarrierNo.Size = new Size(268, 38);
+            txtCarrierNo.TabIndex = 5;
             // 
             // txtCarrierType
             // 
-            this.txtCarrierType.Location = new System.Drawing.Point(244, 335);
-            this.txtCarrierType.Name = "txtCarrierType";
-            this.txtCarrierType.Size = new System.Drawing.Size(155, 25);
-            this.txtCarrierType.TabIndex = 6;
+            txtCarrierType.Location = new Point(427, 692);
+            txtCarrierType.Margin = new Padding(5, 6, 5, 6);
+            txtCarrierType.Name = "txtCarrierType";
+            txtCarrierType.Size = new Size(268, 38);
+            txtCarrierType.TabIndex = 6;
             // 
             // txtDurableId
             // 
-            this.txtDurableId.Location = new System.Drawing.Point(412, 335);
-            this.txtDurableId.Name = "txtDurableId";
-            this.txtDurableId.Size = new System.Drawing.Size(155, 25);
-            this.txtDurableId.TabIndex = 7;
+            txtDurableId.Location = new Point(832, 692);
+            txtDurableId.Margin = new Padding(5, 6, 5, 6);
+            txtDurableId.Name = "txtDurableId";
+            txtDurableId.Size = new Size(268, 38);
+            txtDurableId.TabIndex = 7;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 338);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "载具编号:";
+            label1.AutoSize = true;
+            label1.Location = new Point(23, 699);
+            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(116, 31);
+            label1.TabIndex = 8;
+            label1.Text = "载具编号:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 338);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "载具类型:";
+            label2.AutoSize = true;
+            label2.Location = new Point(299, 699);
+            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(116, 31);
+            label2.TabIndex = 9;
+            label2.Text = "载具类型:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 338);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "耐用品ID:";
+            label3.AutoSize = true;
+            label3.Location = new Point(705, 699);
+            label3.Margin = new Padding(5, 0, 5, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(117, 31);
+            label3.TabIndex = 10;
+            label3.Text = "耐用品ID:";
             // 
             // cmbDurableType
             // 
-            this.cmbDurableType.FormattingEnabled = true;
-            this.cmbDurableType.Location = new System.Drawing.Point(515, 335);
-            this.cmbDurableType.Name = "cmbDurableType";
-            this.cmbDurableType.Size = new System.Drawing.Size(106, 23);
-            this.cmbDurableType.TabIndex = 11;
+            cmbDurableType.FormattingEnabled = true;
+            cmbDurableType.Location = new Point(1197, 691);
+            cmbDurableType.Margin = new Padding(5, 6, 5, 6);
+            cmbDurableType.Name = "cmbDurableType";
+            cmbDurableType.Size = new Size(182, 39);
+            cmbDurableType.TabIndex = 11;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(483, 338);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 15);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "类型:";
+            label4.AutoSize = true;
+            label4.Location = new Point(1119, 699);
+            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 31);
+            label4.TabIndex = 12;
+            label4.Text = "类型:";
             // 
             // FrmCarrier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbDurableType);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtDurableId);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtCarrierType);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCarrierNo);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.dataGridViewCarriers);
-            this.Name = "FrmCarrier";
-            this.Text = "载具管理";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCarriers)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(14F, 31F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1608, 930);
+            Controls.Add(label4);
+            Controls.Add(cmbDurableType);
+            Controls.Add(label3);
+            Controls.Add(txtDurableId);
+            Controls.Add(label2);
+            Controls.Add(txtCarrierType);
+            Controls.Add(label1);
+            Controls.Add(txtCarrierNo);
+            Controls.Add(btnSearch);
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnNew);
+            Controls.Add(dataGridViewCarriers);
+            Margin = new Padding(5, 6, 5, 6);
+            Name = "FrmCarrier";
+            Text = "载具管理";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCarriers).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

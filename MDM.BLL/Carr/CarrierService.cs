@@ -2,18 +2,19 @@
 using MDM.Model.UserEntities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MDM.BLL.Carr
 {
     public interface ICarrierService
     {
         List<Carrier> GetAllCarriers();
+        List<Durable> GetDurableTypes(); // 新增获取耐用品类型的方法
         Carrier GetCarrierByNo(string carrierNo);
         bool InsertCarrier(Carrier carrier);
         bool UpdateCarrier(Carrier carrier);
         bool DeleteCarrier(string carrierNo);
     }
-
     public class CarrierService : ICarrierService
     {
         private readonly CarrierRepository _repository;
@@ -34,6 +35,19 @@ namespace MDM.BLL.Carr
             {
                 // Log exception
                 return new List<Carrier>();
+            }
+        }
+
+        public List<Durable> GetDurableTypes()
+        {
+            try
+            {
+                return _repository.GetDurableTypes();
+            }
+            catch (Exception ex)
+            {
+                // Log exception
+                return new List<Durable>();
             }
         }
 

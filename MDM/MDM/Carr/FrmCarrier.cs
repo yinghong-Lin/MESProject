@@ -24,14 +24,36 @@ namespace MDM.UI.Carr
             var carriers = _carrierService.GetAllCarriers();
             _carrierBindingList = new BindingList<Carrier>(carriers);
             dataGridViewCarriers.DataSource = _carrierBindingList;
+
+            // 设置DataGridView列标题为中文
+            SetDataGridViewColumnHeaders();
         }
 
         private void LoadDurableTypes()
         {
-            // 这里应该从数据库加载耐用品类型
-            cmbDurableType.Items.Add("Magazine");
-            cmbDurableType.Items.Add("HighTemp");
-            cmbDurableType.Items.Add("ESD");
+            // 从数据库加载耐用品类型
+            var durableTypes = _carrierService.GetDurableTypes();
+            cmbDurableType.DataSource = durableTypes;
+            cmbDurableType.DisplayMember = "DurableType";
+            cmbDurableType.ValueMember = "DurableId";
+        }
+
+        private void SetDataGridViewColumnHeaders()
+        {
+            if (dataGridViewCarriers.Columns.Count > 0)
+            {
+                dataGridViewCarriers.Columns["CarrierNo"].HeaderText = "载具编号";
+                dataGridViewCarriers.Columns["CarrierType"].HeaderText = "载具类型";
+                dataGridViewCarriers.Columns["CarrierDetailType"].HeaderText = "详细类型";
+                dataGridViewCarriers.Columns["DurableId"].HeaderText = "耐用品ID";
+                dataGridViewCarriers.Columns["HandlingStatus"].HeaderText = "载具状态";
+                dataGridViewCarriers.Columns["CleaningStatus"].HeaderText = "清洗状态";
+                dataGridViewCarriers.Columns["LockStatus"].HeaderText = "锁定状态";
+                dataGridViewCarriers.Columns["BatchCapacity"].HeaderText = "批次容量";
+                dataGridViewCarriers.Columns["CurrentQty"].HeaderText = "当前数量";
+                dataGridViewCarriers.Columns["Location"].HeaderText = "位置";
+                dataGridViewCarriers.Columns["LastMaintenance"].HeaderText = "最后维护日期";
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)

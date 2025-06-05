@@ -65,6 +65,40 @@ namespace MDM.DAL.Carr
             return carriers;
         }
 
+        public List<Durable> GetDurableTypes()
+        {
+            var durables = new List<Durable>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                string query = "SELECT * FROM durables";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            durables.Add(new Durable
+                            {
+                                DurableId = reader["durable_id"] == DBNull.Value ? null : reader["durable_id"].ToString(),
+                                SpecDescription = reader["spec_description"] == DBNull.Value ? null : reader["spec_description"].ToString(),
+                                DurableType = reader["durable_type"] == DBNull.Value ? null : reader["durable_type"].ToString(),
+                                ExpectedLife = reader["expected_life"] == DBNull.Value ? 0 : Convert.ToInt32(reader["expected_life"]),
+                                CurrentUsage = reader["current_usage"] == DBNull.Value ? 0 : Convert.ToInt32(reader["current_usage"]),
+                                PurchaseDate = reader["purchase_date"] == DBNull.Value ? null : (DateTime?)reader["purchase_date"],
+                                Supplier = reader["supplier"] == DBNull.Value ? null : reader["supplier"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return durables;
+        }
+
         public Carrier GetCarrierByNo(string carrierNo)
         {
             using (var connection = new MySqlConnection(_connectionString))
