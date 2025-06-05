@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 
 namespace MDM.BLL.Equipment
-{
+{ 
     public interface IEqpGroupService
     {
         List<EqpGroup> GetAllEqpGroups();

@@ -182,13 +182,10 @@ VALUES
 (14, '物料', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
 (15, '产品组', 'c', NULL, 14, NULL, NULL, NULL, NOW(), NULL),
 (16, '工艺', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(17, '工艺包', 'c', NULL, 16, NULL, NULL, NULL, NOW(), NULL);
-
--- 插入 permissions 表数据
-INSERT INTO permissions (permission_id, permission_name, permission_description, permission_type, system_id, event_user, event_remark, edit_time, create_time, event_type) VALUES
-('BW_MDM', 'MDM Administrator', NULL, 'MENU', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
-('DMW_MDM', 'Test', 'Test DMW', 'TEST', 'TEST_SYSTEM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
-('HONSUN_MDM', 'Test HONSUN', '这是一个测试MDM权限', 'TEST', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL);
+(17, '工艺包', 'c', NULL, 16, NULL, NULL, NULL, NOW(), NULL)，
+(18, '载具', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
+(19, '载具主页面', 'c', NULL, 18, NULL, NULL, NULL, NOW(), NULL),
+(20, '创建载具', 'c', NULL, 18, NULL, NULL, NULL, NOW(), NULL);
 
 -- 插入 permission_menu 表数据
 INSERT INTO permission_menu (id, permission_id, menu_id, event_user, event_remark, edit_time, create_time, event_type)
@@ -207,7 +204,17 @@ VALUES
 (12, 'BW_MDM', 12, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
 (13, 'BW_MDM', 13, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
 (14, 'BW_MDM', 16, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(15, 'BW_MDM', 17, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL);
+(15, 'BW_MDM', 17, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(16, 'BW_MDM', 18, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(17, 'BW_MDM', 19, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(18, 'BW_MDM', 20, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL);
+
+-- 插入 permissions 表数据
+INSERT INTO permissions (permission_id, permission_name, permission_description, permission_type, system_id, event_user, event_remark, edit_time, create_time, event_type) VALUES
+('BW_MDM', 'MDM Administrator', NULL, 'MENU', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
+('DMW_MDM', 'Test', 'Test DMW', 'TEST', 'TEST_SYSTEM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
+('HONSUN_MDM', 'Test HONSUN', '这是一个测试MDM权限', 'TEST', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL);
+
 
 -- 插入设备组表数据
 INSERT INTO eqp_group (eqp_group_id, eqp_group_type, eqp_group_description, factory_id, event_user, event_remark, edit_time, create_time, event_type)
