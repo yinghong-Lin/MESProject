@@ -10,13 +10,14 @@ namespace MDM.UI.Carr
     {
         private readonly ICarrierService _carrierService;
         private BindingList<Carrier> _carrierBindingList;
+        private BindingList<Durable> _durableBindingList;
 
         public FrmCarrier(ICarrierService carrierService)
         {
             InitializeComponent();
             _carrierService = carrierService;
             LoadCarriers();
-            LoadDurableTypes();
+            LoadDurables();
         }
 
         private void LoadCarriers()
@@ -24,35 +25,55 @@ namespace MDM.UI.Carr
             var carriers = _carrierService.GetAllCarriers();
             _carrierBindingList = new BindingList<Carrier>(carriers);
             dataGridViewCarriers.DataSource = _carrierBindingList;
+            dataGridViewCarriers.ScrollBars = ScrollBars.Both; // 添加滚动条设置
 
-            // 设置DataGridView列标题为中文
-            SetDataGridViewColumnHeaders();
+            SetDataGridViewColumnHeaders(dataGridViewCarriers, true);
         }
 
-        private void LoadDurableTypes()
+        private void LoadDurables()
         {
-            // 从数据库加载耐用品类型
-            var durableTypes = _carrierService.GetDurableTypes();
-            cmbDurableType.DataSource = durableTypes;
-            cmbDurableType.DisplayMember = "DurableType";
-            cmbDurableType.ValueMember = "DurableId";
+            var durables = _carrierService.GetDurableTypes();
+            _durableBindingList = new BindingList<Durable>(durables);
+            dataGridViewDurables.DataSource = _durableBindingList;
+            dataGridViewDurables.ScrollBars = ScrollBars.Both; // 添加滚动条设置
+
+            SetDataGridViewColumnHeaders(dataGridViewDurables, false);
         }
 
-        private void SetDataGridViewColumnHeaders()
+        private void SetDataGridViewColumnHeaders(DataGridView dataGridView, bool isCarrier)
         {
-            if (dataGridViewCarriers.Columns.Count > 0)
+            if (dataGridView.Columns.Count > 0)
             {
-                dataGridViewCarriers.Columns["CarrierNo"].HeaderText = "载具编号";
-                dataGridViewCarriers.Columns["CarrierType"].HeaderText = "载具类型";
-                dataGridViewCarriers.Columns["CarrierDetailType"].HeaderText = "详细类型";
-                dataGridViewCarriers.Columns["DurableId"].HeaderText = "耐用品ID";
-                dataGridViewCarriers.Columns["HandlingStatus"].HeaderText = "载具状态";
-                dataGridViewCarriers.Columns["CleaningStatus"].HeaderText = "清洗状态";
-                dataGridViewCarriers.Columns["LockStatus"].HeaderText = "锁定状态";
-                dataGridViewCarriers.Columns["BatchCapacity"].HeaderText = "批次容量";
-                dataGridViewCarriers.Columns["CurrentQty"].HeaderText = "当前数量";
-                dataGridViewCarriers.Columns["Location"].HeaderText = "位置";
-                dataGridViewCarriers.Columns["LastMaintenance"].HeaderText = "最后维护日期";
+                if (isCarrier)
+                {
+                    dataGridView.Columns["CarrierNo"].HeaderText = "载具编号";
+                    dataGridView.Columns["CarrierType"].HeaderText = "载具类型";
+                    dataGridView.Columns["CarrierDetailType"].HeaderText = "详细类型";
+                    dataGridView.Columns["DurableId"].HeaderText = "耐用品ID";
+                    dataGridView.Columns["HandlingStatus"].HeaderText = "载具状态";
+                    dataGridView.Columns["CleaningStatus"].HeaderText = "清洗状态";
+                    dataGridView.Columns["LockStatus"].HeaderText = "锁定状态";
+                    dataGridView.Columns["BatchCapacity"].HeaderText = "批次容量";
+                    dataGridView.Columns["CurrentQty"].HeaderText = "当前数量";
+                    dataGridView.Columns["Location"].HeaderText = "位置";
+
+                    dataGridView.Columns["LastMaintenanceDate"].HeaderText = "最后维护日期";
+
+                }
+                else
+                {
+                    dataGridView.Columns["DurableId"].HeaderText = "耐用品ID";
+                    dataGridView.Columns["SpecDescription"].HeaderText = "规格说明";
+                    dataGridView.Columns["DurableType"].HeaderText = "耐用品类型";
+                    dataGridView.Columns["ExpectedLife"].HeaderText = "预期寿命(次)";
+                    dataGridView.Columns["CurrentUsage"].HeaderText = "当前使用次数";
+
+                    dataGridView.Columns["PurchaseDate"].HeaderText = "采购日期";
+
+
+                    dataGridView.Columns["Supplier"].HeaderText = "供应商";
+
+                }
             }
         }
 
@@ -68,7 +89,9 @@ namespace MDM.UI.Carr
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+
+
+        private void btnEdit_Click_1(object sender, EventArgs e)
         {
             if (dataGridViewCarriers.CurrentRow == null)
                 return;
@@ -105,9 +128,6 @@ namespace MDM.UI.Carr
 
             if (!string.IsNullOrEmpty(txtCarrierType.Text))
                 query = query.Where(c => c.CarrierType.Contains(txtCarrierType.Text));
-
-            if (!string.IsNullOrEmpty(txtDurableId.Text))
-                query = query.Where(c => c.DurableId.Contains(txtDurableId.Text));
 
             _carrierBindingList = new BindingList<Carrier>(query.ToList());
             dataGridViewCarriers.DataSource = _carrierBindingList;
