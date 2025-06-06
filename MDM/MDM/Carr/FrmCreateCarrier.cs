@@ -1,6 +1,7 @@
 ﻿using MDM.BLL.Carr;
 using MDM.Model.UserEntities;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace MDM.UI.Carr
@@ -8,139 +9,143 @@ namespace MDM.UI.Carr
     public partial class FrmCreateCarrier : Form
     {
         private readonly ICarrierService _carrierService;
-        private Carrier _carrier;
+        private BindingList<Carrier> _carrierBindingList;
+        private BindingList<Durable> _durableBindingList;
 
-        public FrmCreateCarrier(ICarrierService carrierService, Carrier carrier = null)
+        public FrmCreateCarrier(ICarrierService carrierService)
         {
             InitializeComponent();
             _carrierService = carrierService;
-            _carrier = carrier ?? new Carrier();
-            LoadDurableTypes();
-            LoadLocations();
-            BindData();
+            LoadDurables();
+            LoadCarriers(); // 现在在LoadDurables之后调用
         }
 
-        public Carrier Carrier => _carrier;
-
-        private void LoadDurableTypes()
+        private void LoadCarriers()
         {
-            // Load durable types from database or hardcode for simplicity
-            cmbDurableType.Items.Add("Magazine");
-            cmbDurableType.Items.Add("HighTemp");
-            cmbDurableType.Items.Add("ESD");
-        }
+            var carriers = _carrierService.GetAllCarriers();
+            _carrierBindingList = new BindingList<Carrier>(carriers);
 
-        private void LoadLocations()
-        {
-            // Load locations from database or hardcode for simplicity
-            cmbLocation.Items.Add("Bank");
-            cmbLocation.Items.Add("Equipment");
-            cmbLocation.Items.Add("Port");
-        }
-
-        private void BindData()
-        {
-            txtCarrierNo.Text = _carrier.CarrierNo;
-            txtCarrierType.Text = _carrier.CarrierType;
-            txtDetailType.Text = _carrier.CarrierDetailType;
-            txtDurableId.Text = _carrier.DurableId;
-            cmbDurableType.Text = _carrier.Durable?.DurableType ?? string.Empty;
-            txtBatchCapacity.Text = _carrier.BatchCapacity.ToString();
-            txtCurrentQty.Text = _carrier.CurrentQty.ToString();
-            cmbLocation.Text = _carrier.Location ?? string.Empty;
-            dtpLastMaintenance.Value = _carrier.LastMaintenanceDate ?? DateTime.Now;
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            if (SaveCarrier())
+            // 应用筛选 - 只显示与当前选择的耐用品ID匹配的载具
+            if (!string.IsNullOrEmpty(txtDurableId.Text))
             {
-                DialogResult = DialogResult.OK;
-                Close();
+                _carrierBindingList = new BindingList<Carrier>(
+                    carriers.FindAll(c => c.DurableId == txtDurableId.Text));
             }
+
+            dataGridViewCarriers.DataSource = _carrierBindingList;
+            dataGridViewCarriers.ScrollBars = ScrollBars.Both;
+            SetDataGridViewColumnHeaders(dataGridViewCarriers, true);
         }
 
-        private bool SaveCarrier()
+        private void LoadDurables()
         {
-            try
+            var durables = _carrierService.GetDurableTypes();
+            _durableBindingList = new BindingList<Durable>(durables);
+            dataGridViewDurables.DataSource = _durableBindingList;
+            dataGridViewDurables.ScrollBars = ScrollBars.Both;
+            SetDataGridViewColumnHeaders(dataGridViewDurables, false);
+        }
+
+        private void SetDataGridViewColumnHeaders(DataGridView dataGridView, bool isCarrier)
+        {
+            if (dataGridView.Columns.Count > 0)
             {
-                if (string.IsNullOrEmpty(txtCarrierNo.Text))
+                if (isCarrier)
                 {
-                    MessageBox.Show("载具编号不能为空", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (string.IsNullOrEmpty(txtCarrierType.Text))
-                {
-                    MessageBox.Show("载具类型不能为空", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (string.IsNullOrEmpty(txtDetailType.Text))
-                {
-                    MessageBox.Show("详细类型不能为空", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (!int.TryParse(txtBatchCapacity.Text, out var batchCapacity) || batchCapacity <= 0)
-                {
-                    MessageBox.Show("批次容量必须为大于0的整数", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                if (!int.TryParse(txtCurrentQty.Text, out var currentQty) || currentQty < 0)
-                {
-                    MessageBox.Show("当前数量必须为非负整数", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                _carrier.CarrierNo = txtCarrierNo.Text;
-                _carrier.CarrierType = txtCarrierType.Text;
-                _carrier.CarrierDetailType = txtDetailType.Text;
-                _carrier.DurableId = txtDurableId.Text;
-                _carrier.BatchCapacity = batchCapacity;
-                _carrier.CurrentQty = currentQty;
-                _carrier.Location = cmbLocation.Text;
-                _carrier.LastMaintenanceDate = dtpLastMaintenance.Value;
-
-                if (string.IsNullOrEmpty(_carrier.CarrierNo))
-                {
-                    if (_carrierService.InsertCarrier(_carrier))
-                    {
-                        MessageBox.Show("载具创建成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("载具创建失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                    dataGridView.Columns["CarrierNo"].HeaderText = "载具编号";
+                    dataGridView.Columns["CarrierType"].HeaderText = "载具类型";
+                    dataGridView.Columns["CarrierDetailType"].HeaderText = "详细类型";
+                    dataGridView.Columns["DurableId"].HeaderText = "耐用品ID";
+                    dataGridView.Columns["HandlingStatus"].HeaderText = "载具状态";
+                    dataGridView.Columns["CleaningStatus"].HeaderText = "清洗状态";
+                    dataGridView.Columns["LockStatus"].HeaderText = "锁定状态";
+                    dataGridView.Columns["BatchCapacity"].HeaderText = "批次容量";
+                    dataGridView.Columns["CurrentQty"].HeaderText = "当前数量";
+                    dataGridView.Columns["Location"].HeaderText = "位置";
+                    dataGridView.Columns["LastMaintenanceDate"].HeaderText = "最后维护日期";
                 }
                 else
                 {
-                    if (_carrierService.UpdateCarrier(_carrier))
-                    {
-                        MessageBox.Show("载具更新成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("载具更新失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
+                    dataGridView.Columns["DurableId"].HeaderText = "耐用品ID";
+                    dataGridView.Columns["SpecDescription"].HeaderText = "规格说明";
+                    dataGridView.Columns["DurableType"].HeaderText = "耐用品类型";
+                    dataGridView.Columns["ExpectedLife"].HeaderText = "预期寿命(次)";
+                    dataGridView.Columns["CurrentUsage"].HeaderText = "当前使用次数";
+                    dataGridView.Columns["PurchaseDate"].HeaderText = "采购日期";
+                    dataGridView.Columns["Supplier"].HeaderText = "供应商";
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"保存载具时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnNew_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            using (var frm = new FrmEditCarrier(_carrierService))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    var newCarrier = frm.Carrier;
+                    _carrierBindingList.Add(newCarrier);
+                }
+            }
+        }
+
+        private void btnEdit_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridViewCarriers.CurrentRow == null)
+                return;
+
+            var carrier = _carrierBindingList[dataGridViewCarriers.CurrentRow.Index];
+            using (var frm = new FrmEditCarrier(_carrierService, carrier))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    _carrierBindingList.ResetBindings();
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCarriers.CurrentRow == null)
+                return;
+
+            var carrier = _carrierBindingList[dataGridViewCarriers.CurrentRow.Index];
+            if (MessageBox.Show($"确定要删除载具 {carrier.CarrierNo} 吗？",
+                "确认删除", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                _carrierService.DeleteCarrier(carrier.CarrierNo);
+                _carrierBindingList.Remove(carrier);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var query = _carrierService.GetAllCarriers().AsQueryable();
+
+            if (!string.IsNullOrEmpty(txtCarrierNo.Text))
+                query = query.Where(c => c.CarrierNo.Contains(txtCarrierNo.Text));
+
+            if (!string.IsNullOrEmpty(txtCarrierType.Text))
+                query = query.Where(c => c.CarrierType.Contains(txtCarrierType.Text));
+
+            // 添加耐用品ID筛选
+            if (!string.IsNullOrEmpty(txtDurableId.Text))
+                query = query.Where(c => c.DurableId == txtDurableId.Text);
+
+            _carrierBindingList = new BindingList<Carrier>(query.ToList());
+            dataGridViewCarriers.DataSource = _carrierBindingList;
+        }
+
+        private void dataGridViewDurables_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewDurables.CurrentRow != null)
+            {
+                var selectedDurable = _durableBindingList[dataGridViewDurables.CurrentRow.Index];
+                txtDurableId.Text = selectedDurable.DurableId;
+
+                // 当耐用品选择变化时，重新加载匹配的载具
+                LoadCarriers();
+            }
         }
     }
 }
