@@ -166,55 +166,68 @@ VALUES
 -- 插入 menus 表数据
 INSERT INTO menus (menu_id, menu_name, function_id, menu_description, parent_menu_id, event_user, event_remark, edit_time, create_time, event_type)
 VALUES 
-(1, '工厂', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(2, '工厂', 'c', NULL, 1, NULL, NULL, NULL, NOW(), NULL),
-(3, '生产地信息', 'c', NULL, 1, NULL, NULL, NULL, NOW(), NULL),
-(4, '管理员', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(5, '菜单', 'c', NULL, 4, NULL, NULL, NULL, NOW(), NULL),
-(6, '用户', 'c', NULL, 4, NULL, NULL, NULL, NOW(), NULL),
-(7, '权限', 'p', NULL, 4, NULL, NULL, NULL, NOW(), NULL),
-(8, '权限', 'c', NULL, 7, NULL, NULL, NULL, NOW(), NULL),
-(9, '菜单权限', 'c', NULL, 7, NULL, NULL, NULL, NOW(), NULL),
-(10, '用户权限', 'c', NULL, 7, NULL, NULL, NULL, NOW(), NULL),
-(11, '设备', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(12, '设备组', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
-(13, '设备', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
-(14, '物料', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(15, '产品组', 'c', NULL, 14, NULL, NULL, NULL, NOW(), NULL),
-(16, '工艺', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(17, '工艺包', 'c', NULL, 16, NULL, NULL, NULL, NOW(), NULL)，
-(18, '载具', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
-(19, '载具主页面', 'c', NULL, 18, NULL, NULL, NULL, NOW(), NULL),
-(20, '创建载具', 'c', NULL, 18, NULL, NULL, NULL, NOW(), NULL);
+(1, '生产计划', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
+(2, '工单管理', 'p', NULL, 1, NULL, NULL, NULL, NOW(), NULL),
+(3, '创建工单', 'c', NULL, 2, NULL, NULL, NULL, NOW(), NULL),
+(4, '取消创建工单', 'c', NULL, 2, NULL, NULL, NULL, NOW(), NULL),
+(5, '投工单', 'c', NULL, 2, NULL, NULL, NULL, NOW(), NULL),
+
+(6, '批次管理', 'p', NULL, 1, NULL, NULL, NULL, NOW(), NULL),
+(7, '创建批次', 'c', NULL, 6, NULL, NULL, NULL, NOW(), NULL),
+(8, '取消创建批次', 'c', NULL, 6, NULL, NULL, NULL, NOW(), NULL),
+(9, '投产批次', 'c', NULL, 6, NULL, NULL, NULL, NOW(), NULL),
+(10, '取消投产批次', 'c', NULL, 6, NULL, NULL, NULL, NOW(), NULL),
+
+(11, '在制品', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
+(12, '进出站', 'p', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
+(13, '单批次进站', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
+(14, '单批次出战', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
+(15, '跳工站', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
+(16, '生产返修', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
+
+(17, '载具', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
+(18, '载具主页面', 'c', NULL, 17, NULL, NULL, NULL, NOW(), NULL),
+(19, '创建载具', 'c', NULL, 17, NULL, NULL, NULL, NOW(), NULL),
+
+(20, '物料', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
+(21, '创建物料', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL),
+(22, '上料', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL),
+(23, '下物', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL);
+
 
 -- 插入 permission_menu 表数据
 INSERT INTO permission_menu (id, permission_id, menu_id, event_user, event_remark, edit_time, create_time, event_type)
 VALUES 
 (1, 'BW_MDM', 1, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
 (2, 'BW_MDM', 2, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(3, 'BW_MDM', 4, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(4, 'BW_MDM', 6, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(5, 'BW_MDM', 7, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(6, 'BW_MDM', 8, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(7, 'BW_MDM', 9, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(8, 'BW_MDM', 3, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(9, 'BW_MDM', 5, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
-(10, 'BW_MDM', 17, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL),
+(3, 'BW_MDM', 3, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(4, 'BW_MDM', 4, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(5, 'BW_MDM', 5, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(6, 'BW_MDM', 6, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(7, 'BW_MDM', 7, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(8, 'BW_MDM', 8, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(9, 'BW_MDM', 9, NULL, NULL, NULL, '2025-04-22 09:56:17', NULL),
+(10, 'BW_MDM', 10, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL),
 (11, 'BW_MDM', 11, NULL, NULL, NULL, '2025-04-29 10:55:29', NULL),
 (12, 'BW_MDM', 12, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
 (13, 'BW_MDM', 13, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(14, 'BW_MDM', 16, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(15, 'BW_MDM', 17, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(16, 'BW_MDM', 18, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(17, 'BW_MDM', 19, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(18, 'BW_MDM', 20, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL);
+(14, 'BW_MDM', 14, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(15, 'BW_MDM', 15, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(16, 'BW_MDM', 16, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL),
+(17, 'BW_MDM', 17, NULL, NULL, NULL, '2025-04-29 10:55:29', NULL),
+(18, 'BW_MDM', 18, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
+(19, 'BW_MDM', 19, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
+(20, 'BW_MDM', 20, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
+(21, 'BW_MDM', 21, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(22, 'BW_MDM', 22, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
+(23, 'BW_MDM', 23, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL);
+
 
 -- 插入 permissions 表数据
 INSERT INTO permissions (permission_id, permission_name, permission_description, permission_type, system_id, event_user, event_remark, edit_time, create_time, event_type) VALUES
 ('BW_MDM', 'MDM Administrator', NULL, 'MENU', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
 ('DMW_MDM', 'Test', 'Test DMW', 'TEST', 'TEST_SYSTEM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL),
 ('HONSUN_MDM', 'Test HONSUN', '这是一个测试MDM权限', 'TEST', 'MDM', NULL, NULL, NULL, CURRENT_TIMESTAMP, NULL);
-
 
 -- 插入设备组表数据
 INSERT INTO eqp_group (eqp_group_id, eqp_group_type, eqp_group_description, factory_id, event_user, event_remark, edit_time, create_time, event_type)

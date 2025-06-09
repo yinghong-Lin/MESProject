@@ -58,7 +58,7 @@ INSERT INTO carriers (
     equipment_id, port_id, handling_status, cleaning_status,
     lock_status, batch_capacity, current_qty, location, last_maintenance_date
 ) VALUES (
-    'CA-0002', 'HighTemp', 'HT-001', 'DUR-002',
+    'CA-0002', 'HighTemp', 'HT-001', 'DUR-001',
     'DBA1-0001', 'P002', 'InUse', 'Clean',
     'NotOnHold', 15, 5, 'Line1', '2023-05-15'
 );
@@ -67,7 +67,16 @@ INSERT INTO carriers (
     equipment_id, handling_status, cleaning_status,
     lock_status, batch_capacity, current_qty, location
 ) VALUES (
-    'CA-0003', 'ESD', 'ESD-001', 'DUR-003',
+    'CA-0003', 'ESD', 'ESD-001', 'DUR-002',
+    'ATE0-0002', 'Maintenance', 'Dirty',
+    'OnHold', 20, 0, 'RepairArea'
+);
+INSERT INTO carriers (
+    carrier_no, carrier_type, carrier_detail_type, durable_id,
+    equipment_id, handling_status, cleaning_status,
+    lock_status, batch_capacity, current_qty, location
+) VALUES (
+    'CA-0004', 'ESD', 'ESD-001', 'DUR-003',
     'ATE0-0002', 'Maintenance', 'Dirty',
     'OnHold', 20, 0, 'RepairArea'
 );

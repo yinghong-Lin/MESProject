@@ -69,10 +69,11 @@ namespace MDM.UI.MainForms
                 var topLevelMenus = menuList.Where(m => m.ParentMenuId == 0)
                     .OrderBy(m => m.MenuName switch
                     {
-                        "工厂" => 1,
-                        "工艺" => 2,
-                        "管理员" => 3,
+                        "生产计划" => 1,
+                        "在制品" => 2,
+                        "载具" => 3,
                         "设备" => 4,
+                        "物料" => 5,
                         _ => 99
                     }).ToList();
 
