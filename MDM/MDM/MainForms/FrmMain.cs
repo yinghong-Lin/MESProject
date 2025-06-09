@@ -124,90 +124,13 @@ namespace MDM.UI.MainForms
 
             switch (tabText)
             {
-                case "工厂":
-                    childForm = new Frm_Factory();
-                    break;
-                case "设备组":
-                    try
-                    {
-                        Debug.WriteLine("正在创建设备组窗体...");
-                        var eqpGroupRepository = new EqpGroupRepository(_connectionString);
-                        var eqpGroupService = new EqpGroupService(eqpGroupRepository);
-                        childForm = new FrmEqpGroup(eqpGroupService, eqpGroupRepository);
-                        Debug.WriteLine("设备组窗体创建成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"创建设备组窗体时发生异常: {ex.Message}");
-                        MessageBox.Show($"创建设备组窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    break;
-                case "设备":
-                    try
-                    {
-                        Debug.WriteLine("正在创建设备窗体...");
-                        var eqpRepository = new EqpRepository(_connectionString);
-                        var eqpService = new EqpService(eqpRepository);
-                        childForm = new FrmEqp(eqpService);
-                        Debug.WriteLine("设备窗体创建成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"创建设备窗体时发生异常: {ex.Message}");
-                        MessageBox.Show($"创建设备窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    break;
-                case "用户":
-                    var userRepository = _loginService.UserRepository;
-                    if (userRepository != null)
-                    {
-                        childForm = new Frm_User(_loginService, _currentUser, userRepository);
-                    }
-                    break;
-                case "生产地信息":
-                    childForm = new Frm_Area();
-                    break;
-                case "权限":
-                    childForm = new Frm_Permission();
-                    break;
-                case "工艺包":
-                    try
-                    {
-                        Debug.WriteLine("正在创建工艺包窗体...");
-                        var processRepository = new ProcessRepository(_connectionString);
-                        var processService = new ProcessService(processRepository);
-                        childForm = new FrmProcess(processService);
-                        Debug.WriteLine("工艺包窗体创建成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"创建工艺包窗体时发生异常: {ex.Message}");
-                        MessageBox.Show($"创建工艺包窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    break;
-                case "工艺路线":
-                    try
-                    {
-                        Debug.WriteLine("正在创建工艺路线窗体...");
-                        var processRepository = new ProcessRepository(_connectionString);
-                        var processService = new ProcessService(processRepository);
-                        childForm = new FrmProcessRoute(processService, _currentFactoryId);
-                        Debug.WriteLine("工艺路线窗体创建成功");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"创建工艺路线窗体时发生异常: {ex.Message}");
-                        MessageBox.Show($"创建工艺路线窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    break;
                 case "载具主页面": // 添加载具菜单项的处理逻辑
                     try
                     {
-                        Debug.WriteLine("正在创建载具窗体...");
                         var carrierRepository = new CarrierRepository(_connectionString); // 假设你已经实现了CarrierRepository
                         var carrierService = new CarrierService(carrierRepository); // 假设你已经实现了CarrierService
                         childForm = new FrmCarrier(carrierService); // 假设你已经实现了FrmCreateCarrier窗体
-                        Debug.WriteLine("载具窗体创建成功");
+                        
                     }
                     catch (Exception ex)
                     {
@@ -218,16 +141,28 @@ namespace MDM.UI.MainForms
                 case "创建载具": // 添加载具菜单项的处理逻辑
                     try
                     {
-                        Debug.WriteLine("正在创建载具窗体...");
                         var carrierRepository = new CarrierRepository(_connectionString); // 假设你已经实现了CarrierRepository
                         var carrierService = new CarrierService(carrierRepository); // 假设你已经实现了CarrierService
                         childForm = new FrmCreateCarrier(carrierService); // 假设你已经实现了FrmCreateCarrier窗体
-                        Debug.WriteLine("载具窗体创建成功");
+                        
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine($"创建载具窗体时发生异常: {ex.Message}");
                         MessageBox.Show($"创建载具窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case "单批次进站":
+                    try
+                    {
+                        
+                        childForm = new FrmWorkStation();
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"创建工作站窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"创建工作站窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
             }

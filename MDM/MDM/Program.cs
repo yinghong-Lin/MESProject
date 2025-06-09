@@ -11,7 +11,7 @@ namespace MDM.UI
 {
     internal static class Program
     {
-        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=123456;Port=3306;";
+        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=@nykl2279168;Port=3306;";
 
         // 程序的主入口点
         [STAThread]
