@@ -24,6 +24,10 @@ namespace MDM.UI.Carr
 
         private void InitializeComboBoxes()
         {
+            // 添加 "All" 选项
+            comboBoxType.Items.Add("All");
+            comboBoxDurableId.Items.Add("All");
+
             // 初始化载具类型下拉框（从数据库获取）
             var carrierTypes = _carrierService.GetAllCarriers()
                 .Select(c => c.CarrierType)
@@ -67,22 +71,22 @@ namespace MDM.UI.Carr
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var query = _carrierService.GetAllCarriers().AsQueryable();
-
-            // 根据载具类型筛选
-            if (comboBoxType.SelectedItem.ToString() != "All")
-            {
-                query = query.Where(c => c.CarrierType == comboBoxType.SelectedItem.ToString());
-            }
+            var query = _carrierService.GetAllDurables().AsQueryable();
 
             // 根据耐用品规格号筛选
             if (comboBoxDurableId.SelectedItem.ToString() != "All")
             {
-                query = query.Where(c => c.DurableId == comboBoxDurableId.SelectedItem.ToString());
+                query = query.Where(d => d.DurableId == comboBoxDurableId.SelectedItem.ToString());
             }
 
-            _carrierBindingList = new BindingList<Carrier>(query.ToList());
-            dataGridViewCarriers.DataSource = _carrierBindingList;
+            // 根据耐用品类型筛选
+            if (comboBoxType.SelectedItem.ToString() != "All")
+            {
+                query = query.Where(d => d.DurableType == comboBoxType.SelectedItem.ToString());
+            }
+
+            _durableBindingList = new BindingList<Durable>(query.ToList());
+            dataGridViewDurables.DataSource = _durableBindingList;
         }
 
         private void dataGridViewDurables_SelectionChanged(object sender, EventArgs e)
@@ -99,6 +103,9 @@ namespace MDM.UI.Carr
                 txtMaxClean.Text = selectedDurable.MaxUsageDays.ToString(); // 最大清洗次数
                 txtCapacity.Text = selectedDurable.DurableCapacity.ToString(); // 容量
                 txtCarrierId.Text = Guid.NewGuid().ToString("N").Substring(0, 8); // 自动生成载具号前缀
+
+                // 筛选载具清单，只显示与所选耐用品规格号一致的载具
+                LoadCarriers(selectedDurable.DurableId);
             }
         }
 

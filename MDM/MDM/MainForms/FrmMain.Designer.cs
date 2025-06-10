@@ -51,14 +51,14 @@
             tabControl1.Margin = new Padding(6, 5, 6, 5);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(2110, 1000);
+            tabControl1.Size = new Size(2110, 1040);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 1;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // BtnLogout
             // 
-            BtnLogout.Location = new Point(1546, 47);
+            BtnLogout.Location = new Point(1601, 39);
             BtnLogout.Name = "BtnLogout";
             BtnLogout.Size = new Size(185, 57);
             BtnLogout.TabIndex = 2;
@@ -71,7 +71,7 @@
             AutoScaleDimensions = new SizeF(14F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(2110, 1135);
+            ClientSize = new Size(2110, 1178);
             Controls.Add(BtnLogout);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);

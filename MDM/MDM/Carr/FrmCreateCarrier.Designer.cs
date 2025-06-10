@@ -128,7 +128,7 @@
             dataGridViewCarriers.ReadOnly = true;
             dataGridViewCarriers.RowHeadersWidth = 51;
             dataGridViewCarriers.RowTemplate.Height = 24;
-            dataGridViewCarriers.Size = new Size(866, 509);
+            dataGridViewCarriers.Size = new Size(866, 506);
             dataGridViewCarriers.TabIndex = 0;
             // 
             // label4
@@ -371,6 +371,7 @@
             createbtn.TabIndex = 29;
             createbtn.Text = "生成";
             createbtn.UseVisualStyleBackColor = false;
+
             // 
             // createInfoPanel
             // 
@@ -407,7 +408,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(69, 1028);
+            label18.Location = new Point(1041, 870);
             label18.Name = "label18";
             label18.Size = new Size(62, 31);
             label18.TabIndex = 30;
@@ -417,7 +418,7 @@
             // 
             label19.AutoSize = true;
             label19.ForeColor = Color.IndianRed;
-            label19.Location = new Point(47, 1035);
+            label19.Location = new Point(1019, 877);
             label19.Name = "label19";
             label19.Size = new Size(25, 31);
             label19.TabIndex = 31;
@@ -426,16 +427,16 @@
             // textBox8
             // 
             textBox8.BackColor = SystemColors.Window;
-            textBox8.Location = new Point(178, 1028);
+            textBox8.Location = new Point(1132, 870);
             textBox8.Name = "textBox8";
-            textBox8.Size = new Size(877, 38);
+            textBox8.Size = new Size(246, 38);
             textBox8.TabIndex = 30;
             // 
             // button1
             // 
             button1.BackColor = SystemColors.HotTrack;
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(1264, 1020);
+            button1.Location = new Point(1228, 943);
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 31;
@@ -446,7 +447,7 @@
             // 
             button2.BackColor = SystemColors.HotTrack;
             button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(1089, 1021);
+            button2.Location = new Point(1056, 944);
             button2.Name = "button2";
             button2.Size = new Size(150, 46);
             button2.TabIndex = 30;
@@ -527,7 +528,7 @@
             // 
             AutoScaleDimensions = new SizeF(14F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1640, 1176);
+            ClientSize = new Size(1696, 1176);
             Controls.Add(label20);
             Controls.Add(button1);
             Controls.Add(button2);
