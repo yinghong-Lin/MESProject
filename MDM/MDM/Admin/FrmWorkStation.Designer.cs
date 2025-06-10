@@ -142,6 +142,14 @@
             label50 = new Label();
             label49 = new Label();
             panel6 = new Panel();
+            button3 = new Button();
+            button4 = new Button();
+            label68 = new Label();
+            label67 = new Label();
+            textBox38 = new TextBox();
+            textBox37 = new TextBox();
+            label66 = new Label();
+            label65 = new Label();
             userBindingSource = new BindingSource(components);
             userBindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
@@ -152,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource1).BeginInit();
             SuspendLayout();
@@ -185,6 +194,7 @@
             button1.TabIndex = 3;
             button1.Text = "Connect EAP";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -195,6 +205,7 @@
             button2.TabIndex = 4;
             button2.Text = "查询";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // textBox1
             // 
@@ -210,10 +221,11 @@
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(15, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(1561, 52);
             panel1.TabIndex = 8;
+            panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
@@ -279,7 +291,7 @@
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(12, 70);
+            panel2.Location = new Point(15, 61);
             panel2.Name = "panel2";
             panel2.Size = new Size(1557, 213);
             panel2.TabIndex = 10;
@@ -817,37 +829,41 @@
             // panel4
             // 
             panel4.Controls.Add(dataGridView1);
-            panel4.Location = new Point(662, 289);
+            panel4.Location = new Point(665, 280);
             panel4.Name = "panel4";
-            panel4.Size = new Size(911, 177);
+            panel4.Size = new Size(904, 177);
             panel4.TabIndex = 66;
+            panel4.Paint += panel4_Paint;
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.ControlLight;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.Location = new Point(5, 6);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(904, 171);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.Size = new Size(896, 166);
+            dataGridView1.TabIndex = 2;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // panel5
             // 
             panel5.Controls.Add(dataGridView3);
-            panel5.Location = new Point(662, 472);
+            panel5.Location = new Point(665, 456);
             panel5.Name = "panel5";
             panel5.Size = new Size(911, 230);
             panel5.TabIndex = 67;
             // 
             // dataGridView3
             // 
+            dataGridView3.BackgroundColor = SystemColors.ControlLight;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(3, 3);
+            dataGridView3.Location = new Point(4, 8);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowHeadersWidth = 62;
             dataGridView3.Size = new Size(904, 219);
             dataGridView3.TabIndex = 1;
+            dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             // 
             // label40
             // 
@@ -977,19 +993,21 @@
             panel3.Controls.Add(label42);
             panel3.Controls.Add(label41);
             panel3.Controls.Add(label40);
-            panel3.Location = new Point(12, 289);
+            panel3.Location = new Point(15, 280);
             panel3.Name = "panel3";
             panel3.Size = new Size(644, 413);
             panel3.TabIndex = 0;
             // 
             // dataGridView2
             // 
+            dataGridView2.BackgroundColor = SystemColors.ControlLight;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(12, 245);
+            dataGridView2.Location = new Point(3, 245);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.Size = new Size(625, 160);
+            dataGridView2.Size = new Size(634, 160);
             dataGridView2.TabIndex = 1;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // textBox36
             // 
@@ -997,6 +1015,7 @@
             textBox36.Name = "textBox36";
             textBox36.Size = new Size(149, 30);
             textBox36.TabIndex = 97;
+            textBox36.TextChanged += textBox36_TextChanged;
             // 
             // textBox35
             // 
@@ -1004,6 +1023,7 @@
             textBox35.Name = "textBox35";
             textBox35.Size = new Size(149, 30);
             textBox35.TabIndex = 96;
+            textBox35.TextChanged += textBox35_TextChanged;
             // 
             // textBox34
             // 
@@ -1011,6 +1031,7 @@
             textBox34.Name = "textBox34";
             textBox34.Size = new Size(149, 30);
             textBox34.TabIndex = 95;
+            textBox34.TextChanged += textBox34_TextChanged;
             // 
             // textBox33
             // 
@@ -1018,6 +1039,7 @@
             textBox33.Name = "textBox33";
             textBox33.Size = new Size(149, 30);
             textBox33.TabIndex = 94;
+            textBox33.TextChanged += textBox33_TextChanged;
             // 
             // textBox32
             // 
@@ -1025,6 +1047,7 @@
             textBox32.Name = "textBox32";
             textBox32.Size = new Size(149, 30);
             textBox32.TabIndex = 93;
+            textBox32.TextChanged += textBox32_TextChanged;
             // 
             // textBox31
             // 
@@ -1032,6 +1055,7 @@
             textBox31.Name = "textBox31";
             textBox31.Size = new Size(149, 30);
             textBox31.TabIndex = 92;
+            textBox31.TextChanged += textBox31_TextChanged;
             // 
             // label64
             // 
@@ -1153,6 +1177,7 @@
             textBox30.Name = "textBox30";
             textBox30.Size = new Size(182, 30);
             textBox30.TabIndex = 79;
+            textBox30.TextChanged += textBox30_TextChanged;
             // 
             // textBox29
             // 
@@ -1160,6 +1185,7 @@
             textBox29.Name = "textBox29";
             textBox29.Size = new Size(182, 30);
             textBox29.TabIndex = 78;
+            textBox29.TextChanged += textBox29_TextChanged;
             // 
             // textBox28
             // 
@@ -1167,6 +1193,7 @@
             textBox28.Name = "textBox28";
             textBox28.Size = new Size(182, 30);
             textBox28.TabIndex = 77;
+            textBox28.TextChanged += textBox28_TextChanged;
             // 
             // textBox27
             // 
@@ -1174,6 +1201,7 @@
             textBox27.Name = "textBox27";
             textBox27.Size = new Size(182, 30);
             textBox27.TabIndex = 76;
+            textBox27.TextChanged += textBox27_TextChanged;
             // 
             // comboBox2
             // 
@@ -1190,6 +1218,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(182, 32);
             comboBox1.TabIndex = 74;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label52
             // 
@@ -1229,10 +1258,93 @@
             // 
             // panel6
             // 
-            panel6.Location = new Point(12, 708);
+            panel6.Controls.Add(button3);
+            panel6.Controls.Add(button4);
+            panel6.Controls.Add(label68);
+            panel6.Controls.Add(label67);
+            panel6.Controls.Add(textBox38);
+            panel6.Controls.Add(textBox37);
+            panel6.Controls.Add(label66);
+            panel6.Controls.Add(label65);
+            panel6.Location = new Point(18, 698);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1561, 32);
+            panel6.Size = new Size(1561, 48);
             panel6.TabIndex = 68;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.RoyalBlue;
+            button3.Location = new Point(1312, 1);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 34);
+            button3.TabIndex = 8;
+            button3.Text = "确定";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.RoyalBlue;
+            button4.Location = new Point(1442, -1);
+            button4.Name = "button4";
+            button4.Size = new Size(112, 34);
+            button4.TabIndex = 9;
+            button4.Text = "退出";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(1007, 7);
+            label68.Name = "label68";
+            label68.Size = new Size(82, 24);
+            label68.TabIndex = 103;
+            label68.Text = "用户编号";
+            label68.Click += label68_Click;
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.ForeColor = Color.Red;
+            label67.Location = new Point(974, 7);
+            label67.Name = "label67";
+            label67.Size = new Size(18, 24);
+            label67.TabIndex = 102;
+            label67.Text = "*";
+            // 
+            // textBox38
+            // 
+            textBox38.Location = new Point(1127, 1);
+            textBox38.Name = "textBox38";
+            textBox38.Size = new Size(169, 30);
+            textBox38.TabIndex = 101;
+            // 
+            // textBox37
+            // 
+            textBox37.Location = new Point(95, 3);
+            textBox37.Name = "textBox37";
+            textBox37.Size = new Size(844, 30);
+            textBox37.TabIndex = 100;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(21, 1);
+            label66.Name = "label66";
+            label66.Size = new Size(46, 24);
+            label66.TabIndex = 58;
+            label66.Text = "备注";
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.ForeColor = Color.Red;
+            label65.Location = new Point(3, 1);
+            label65.Name = "label65";
+            label65.Size = new Size(18, 24);
+            label65.TabIndex = 98;
+            label65.Text = "*";
             // 
             // userBindingSource
             // 
@@ -1250,10 +1362,10 @@
             ClientSize = new Size(1581, 742);
             Controls.Add(panel6);
             Controls.Add(panel5);
-            Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(panel4);
             Name = "FrmWorkStation";
             Text = "FrmWorkStation";
             Load += FrmWorkStation_Load_1;
@@ -1268,6 +1380,8 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource1).EndInit();
             ResumeLayout(false);
@@ -1390,5 +1504,13 @@
         private DataGridView dataGridView3;
         private DataGridView dataGridView2;
         private DataGridView dataGridView1;
+        private Label label65;
+        private Label label66;
+        private Button button3;
+        private Button button4;
+        private Label label68;
+        private Label label67;
+        private TextBox textBox38;
+        private TextBox textBox37;
     }
 }

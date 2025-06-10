@@ -39,28 +39,29 @@
             menuStrip1.ImageScalingSize = new Size(32, 32);
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(12, 4, 0, 4);
-            menuStrip1.Size = new Size(2110, 24);
+            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Size = new Size(1757, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // tabControl1
             // 
             tabControl1.HotTrack = true;
-            tabControl1.Location = new Point(0, 145);
-            tabControl1.Margin = new Padding(6, 5, 6, 5);
+            tabControl1.Location = new Point(0, 112);
+            tabControl1.Margin = new Padding(5, 4, 5, 4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(2110, 1000);
+            tabControl1.Size = new Size(1594, 807);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 1;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // BtnLogout
             // 
-            BtnLogout.Location = new Point(1546, 47);
+            BtnLogout.Location = new Point(1215, 36);
+            BtnLogout.Margin = new Padding(2);
             BtnLogout.Name = "BtnLogout";
-            BtnLogout.Size = new Size(185, 57);
+            BtnLogout.Size = new Size(145, 44);
             BtnLogout.TabIndex = 2;
             BtnLogout.Text = "登出";
             BtnLogout.UseVisualStyleBackColor = true;
@@ -68,17 +69,18 @@
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(14F, 31F);
+            AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(2110, 1135);
+            ClientSize = new Size(1757, 950);
             Controls.Add(BtnLogout);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(6, 5, 6, 5);
+            Margin = new Padding(5, 4, 5, 4);
             Name = "FrmMain";
             Text = "FrmMain";
+            Load += FrmMain_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

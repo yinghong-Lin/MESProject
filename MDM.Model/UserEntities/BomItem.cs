@@ -16,7 +16,7 @@
         public Bom Bom { get; set; }
 
         // 关联的物料信息
-        public Material Material { get; set; }
+       // public Material Material { get; set; }
     }
 
     public class Bom
@@ -27,13 +27,5 @@
         public List<BomItem> BomItems { get; set; } = new List<BomItem>();
     }
 
-    public class Material
-    {
-        public int Id { get; set; }
-        public string MaterialNo { get; set; } // 物料号
-        public string MaterialName { get; set; } // 物料名
-        public string MaterialType { get; set; } // 物料类型
-        public string DetailedMaterialType { get; set; } // 详细物料类型
-        public string Unit { get; set; } // 单位
-    }
+   
 }

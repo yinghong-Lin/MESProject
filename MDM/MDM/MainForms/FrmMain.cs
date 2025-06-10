@@ -130,7 +130,7 @@ namespace MDM.UI.MainForms
                         var carrierRepository = new CarrierRepository(_connectionString); // 假设你已经实现了CarrierRepository
                         var carrierService = new CarrierService(carrierRepository); // 假设你已经实现了CarrierService
                         childForm = new FrmCarrier(carrierService); // 假设你已经实现了FrmCreateCarrier窗体
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -144,7 +144,7 @@ namespace MDM.UI.MainForms
                         var carrierRepository = new CarrierRepository(_connectionString); // 假设你已经实现了CarrierRepository
                         var carrierService = new CarrierService(carrierRepository); // 假设你已经实现了CarrierService
                         childForm = new FrmCreateCarrier(carrierService); // 假设你已经实现了FrmCreateCarrier窗体
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -155,9 +155,9 @@ namespace MDM.UI.MainForms
                 case "单批次进站":
                     try
                     {
-                        
+
                         childForm = new FrmWorkStation();
-                       
+
                     }
                     catch (Exception ex)
                     {
@@ -213,6 +213,11 @@ namespace MDM.UI.MainForms
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // 标签页选择变更事件处理
+        }
+
+        private void FrmMain_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
