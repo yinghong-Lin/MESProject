@@ -427,10 +427,10 @@ VALUES
 ('P002', '传感器', '光学传感器', 'PG002', '1', 'create');
 
 -- 插入工站表（opers）数据
-INSERT INTO opers (oper_id, oper_version, is_active, factory_id, event_type)
+INSERT INTO opers (oper_id, oper_version, is_active, factory_id, event_type,oper_description)
 VALUES 
-('OP001', 'V1', 1, '1', 'create'),
-('OP002', 'V2', 1, '1', 'create');
+('OP001', 'V1', 1, '1', 'create','这是OP001'),
+('OP002', 'V2', 1, '1', 'create','这是OP002');
 
 
 -- 插入工艺流程表（flows）数据

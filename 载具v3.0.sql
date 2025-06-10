@@ -5,7 +5,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS carriers;
 DROP TABLE IF EXISTS durables;
 
--- 创建耐用品表（新增 `durable_capacity` 和 `factory_id`）
+-- 创建耐用品表
 CREATE TABLE durables (
     durable_id VARCHAR(50) PRIMARY KEY COMMENT '耐用品规格号',
     spec_description VARCHAR(100) NOT NULL COMMENT '耐用品规格说明',
@@ -23,7 +23,7 @@ CREATE TABLE durables (
     FOREIGN KEY (factory_id) REFERENCES factories(factory_id)
 ) COMMENT '耐用品信息表';
 
--- 创建载具表（新增 `capacity_status`）
+-- 创建载具表
 CREATE TABLE carriers (
     carrier_no VARCHAR(50) PRIMARY KEY COMMENT '载具编号',
     carrier_type VARCHAR(50) NOT NULL COMMENT '载具类型',
@@ -44,15 +44,15 @@ CREATE TABLE carriers (
     FOREIGN KEY (durable_id) REFERENCES durables(durable_id)
 ) COMMENT '载具信息表';
 
--- 插入耐用品数据（新增 `durable_capacity` 和 `factory_id`）
+-- 插入耐用品数据
 INSERT INTO durables (
     durable_id, spec_description, durable_type, durable_detail_type, 
     durable_color, durable_qty, durable_capacity, expected_life, max_usage, max_usage_days, 
     post_clean_max_usage, post_clean_max_days, factory_id
 ) VALUES 
-('DUR-001', '标准载具规格', 'Magazine', '标准', '银色', 50, 100, 1000, 1200, 365, 1000, 300, 'FAC-001'),
-('DUR-002', '高温载具规格', 'HighTemp', '耐高温', '红色', 30, 80, 500, 600, 200, 400, 150, 'FAC-001'),
-('DUR-003', '防静电载具', 'ESD', '防静电', '黑色', 40, 90, 800, 1000, 300, 700, 250, 'FAC-002');
+('DUR-001', '标准载具规格', 'Magazine', '标准', '银色', 50, 100, 1000, 1200, 365, 1000, 300, '1'),
+('DUR-002', '高温载具规格', 'HighTemp', '耐高温', '红色', 30, 80, 500, 600, 200, 400, 150, '1'),
+('DUR-003', '防静电载具', 'ESD', '防静电', '黑色', 40, 90, 800, 1000, 300, 700, 250, '2');
 
 -- 插入载具数据
 INSERT INTO carriers (

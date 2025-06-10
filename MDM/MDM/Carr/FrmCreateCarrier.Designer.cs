@@ -360,6 +360,7 @@
             clearbtn.TabIndex = 28;
             clearbtn.Text = "清空";
             clearbtn.UseVisualStyleBackColor = false;
+            clearbtn.Click += clearbtn_Click;
             // 
             // createbtn
             // 
@@ -371,7 +372,7 @@
             createbtn.TabIndex = 29;
             createbtn.Text = "生成";
             createbtn.UseVisualStyleBackColor = false;
-
+            createbtn.Click += createbtn_Click_1;
             // 
             // createInfoPanel
             // 

@@ -44,13 +44,12 @@ namespace MDM.UI.Carr
             comboBoxDurableId.Items.AddRange(durableIds.ToArray());
             comboBoxDurableId.SelectedIndex = 0;
 
-            // 初始化位置号下拉框（从数据库获取或硬编码）
+            // 初始化位置号下拉框（从载具表获取）
             var locations = _carrierService.GetAllCarriers()
                 .Select(c => c.Location)
                 .Distinct()
                 .Where(l => !string.IsNullOrEmpty(l))
                 .ToList();
-            comboBoxLocation.Items.Add("请选择位置");
             comboBoxLocation.Items.AddRange(locations.ToArray());
             comboBoxLocation.SelectedIndex = 0;
         }
@@ -68,6 +67,30 @@ namespace MDM.UI.Carr
             _carrierBindingList = new BindingList<Carrier>(carriers);
             dataGridViewCarriers.DataSource = _carrierBindingList;
         }
+
+
+
+        private void dataGridViewDurables_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewDurables.CurrentRow != null)
+            {
+                var selectedDurable = _durableBindingList[dataGridViewDurables.CurrentRow.Index];
+
+                // 在创建面板中显示选中的耐用品信息
+                txtDurableId.Text = selectedDurable.DurableId; // 耐用品规格号
+                txtcarrierType.Text = selectedDurable.DurableType; // 载具类型
+                textBox2.Text = selectedDurable.SpecDescription; // 显示耐用品规格说明
+                comboBoxLocation.Text = "请选择位置"; // 位置号需要从载具表获取
+                txtMaxUsage.Text = selectedDurable.ExpectedLife.ToString(); // 最大使用次数
+                txtMaxClean.Text = selectedDurable.MaxUsageDays.ToString(); // 最大清洗次数
+                txtCapacity.Text = selectedDurable.DurableCapacity.ToString(); // 容量
+                txtCarrierId.Text = Guid.NewGuid().ToString("N").Substring(0, 8); // 自动生成载具号前缀
+
+                // 筛选载具清单，只显示与所选耐用品规格号一致的载具
+                LoadCarriers(selectedDurable.DurableId);
+            }
+        }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -89,27 +112,7 @@ namespace MDM.UI.Carr
             dataGridViewDurables.DataSource = _durableBindingList;
         }
 
-        private void dataGridViewDurables_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridViewDurables.CurrentRow != null)
-            {
-                var selectedDurable = _durableBindingList[dataGridViewDurables.CurrentRow.Index];
-
-                // 在创建面板中显示选中的耐用品信息
-                txtDurableId.Text = selectedDurable.DurableId; // 耐用品规格号
-                txtcarrierType.Text = selectedDurable.DurableType; // 载具类型
-                comboBoxLocation.Text = selectedDurable.FactoryId; // 位置号
-                txtMaxUsage.Text = selectedDurable.ExpectedLife.ToString(); // 最大使用次数
-                txtMaxClean.Text = selectedDurable.MaxUsageDays.ToString(); // 最大清洗次数
-                txtCapacity.Text = selectedDurable.DurableCapacity.ToString(); // 容量
-                txtCarrierId.Text = Guid.NewGuid().ToString("N").Substring(0, 8); // 自动生成载具号前缀
-
-                // 筛选载具清单，只显示与所选耐用品规格号一致的载具
-                LoadCarriers(selectedDurable.DurableId);
-            }
-        }
-
-        private void createbtn_Click(object sender, EventArgs e)
+        private void createbtn_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtDurableId.Text))
             {
@@ -155,21 +158,33 @@ namespace MDM.UI.Carr
                 {
                     CarrierNo = $"{txtCarrierId.Text}-{i + 1}",
                     CarrierType = txtcarrierType.Text,
+                    CarrierDetailType = "Default", // 或者从UI获取详细类型
                     DurableId = txtDurableId.Text,
-                    Location = comboBoxLocation.Text,
+                    Location = comboBoxLocation.Text, // 使用位置号
                     BatchCapacity = capacity,
                     CurrentQty = 0,
-                    CapacityStatus = "Empty",
+                    CapacityStatus = "Normal",
                     CarrierStatus = "Released",
                     CleaningStatus = "Clean",
+                    LockStatus = "NotOnHold",
                     LastMaintenanceDate = DateTime.Now
                 };
 
-                _carrierService.InsertCarrier(newCarrier);
+                bool success = _carrierService.InsertCarrier(newCarrier);
+                if (!success)
+                {
+                    MessageBox.Show($"载具 {newCarrier.CarrierNo} 创建失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             MessageBox.Show($"成功创建 {createQuantity} 个载具", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadCarriers(txtDurableId.Text);
+        }
+
+        private void clearbtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
