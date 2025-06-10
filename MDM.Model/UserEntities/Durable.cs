@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MDM.Model.UserEntities
 {
@@ -11,9 +7,13 @@ namespace MDM.Model.UserEntities
         public string DurableId { get; set; }
         public string SpecDescription { get; set; }
         public string DurableType { get; set; }
+        public string DurableDetailType { get; set; }
+        public string DurableColor { get; set; }
+        public int DurableQty { get; set; }
         public int ExpectedLife { get; set; }
-        public int CurrentUsage { get; set; }
-        public DateTime? PurchaseDate { get; set; }
-        public string Supplier { get; set; }
+        public int MaxUsage { get; set; }
+        public int MaxUsageDays { get; set; }
+        public int PostCleanMaxUsage { get; set; }
+        public int PostCleanMaxDays { get; set; }
     }
 }

@@ -18,16 +18,29 @@ namespace MDM.UI.Carr
         private void InitializeComponent()
         {
             dataGridViewCarriers = new DataGridView();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            label1 = new Label();
-            txtDurableId = new TextBox();
+            panel1 = new Panel();
+            SearchBtn = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             label2 = new Label();
-            txtCarrierType = new TextBox();
-            btnEdit = new Button();
-            btnDelete = new Button();
-            btnSearch = new Button();
+            label1 = new Label();
+            txtCarrierNumber = new TextBox();
+            carrierNotxt = new Label();
+            comboBoxCapacityStatus = new ComboBox();
+            label3 = new Label();
+            comboBoxCarrierStatus = new ComboBox();
+            carrierStatustxt = new Label();
+            comboBoxDurableItemSpec = new ComboBox();
+            durableIdtxt = new Label();
+            comboBoxCleaningStatus = new ComboBox();
+            comboBoxCarrierType = new ComboBox();
+            cleaningStatustxt = new Label();
+            carrierTypetxt = new Label();
+            carrierList = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarriers).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridViewCarriers
@@ -35,124 +48,259 @@ namespace MDM.UI.Carr
             dataGridViewCarriers.AllowUserToAddRows = false;
             dataGridViewCarriers.AllowUserToDeleteRows = false;
             dataGridViewCarriers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCarriers.Dock = DockStyle.Fill;
-            dataGridViewCarriers.Location = new Point(0, 144);
+            dataGridViewCarriers.Dock = DockStyle.Bottom;
+            dataGridViewCarriers.Location = new Point(0, 213);
             dataGridViewCarriers.Name = "dataGridViewCarriers";
             dataGridViewCarriers.ReadOnly = true;
             dataGridViewCarriers.RowHeadersWidth = 82;
             dataGridViewCarriers.RowTemplate.Height = 24;
-            dataGridViewCarriers.Size = new Size(1345, 746);
+            dataGridViewCarriers.Size = new Size(1629, 677);
             dataGridViewCarriers.TabIndex = 0;
             // 
-            // flowLayoutPanel1
+            // panel1
             // 
-            flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Controls.Add(txtDurableId);
-            flowLayoutPanel1.Controls.Add(label2);
-            flowLayoutPanel1.Controls.Add(txtCarrierType);
-            flowLayoutPanel1.Controls.Add(btnEdit);
-            flowLayoutPanel1.Controls.Add(btnDelete);
-            flowLayoutPanel1.Controls.Add(btnSearch);
-            flowLayoutPanel1.Dock = DockStyle.Top;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1345, 144);
-            flowLayoutPanel1.TabIndex = 1;
+            panel1.Controls.Add(SearchBtn);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtCarrierNumber);
+            panel1.Controls.Add(carrierNotxt);
+            panel1.Controls.Add(comboBoxCapacityStatus);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(comboBoxCarrierStatus);
+            panel1.Controls.Add(carrierStatustxt);
+            panel1.Controls.Add(comboBoxDurableItemSpec);
+            panel1.Controls.Add(durableIdtxt);
+            panel1.Controls.Add(comboBoxCleaningStatus);
+            panel1.Controls.Add(comboBoxCarrierType);
+            panel1.Controls.Add(cleaningStatustxt);
+            panel1.Controls.Add(carrierTypetxt);
+            panel1.Location = new Point(1, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1634, 141);
+            panel1.TabIndex = 1;
             // 
-            // label1
+            // SearchBtn
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(5, 0);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(152, 36);
-            label1.TabIndex = 8;
-            label1.Text = "耐用品ID:";
+            SearchBtn.BackColor = SystemColors.HotTrack;
+            SearchBtn.ForeColor = SystemColors.HighlightText;
+            SearchBtn.Location = new Point(1477, 72);
+            SearchBtn.Name = "SearchBtn";
+            SearchBtn.Size = new Size(139, 60);
+            SearchBtn.TabIndex = 18;
+            SearchBtn.Text = "查询";
+            SearchBtn.UseVisualStyleBackColor = false;
+            SearchBtn.Click += SearchBtn_Click;
             // 
-            // txtDurableId
+            // label6
             // 
-            txtDurableId.Location = new Point(167, 6);
-            txtDurableId.Margin = new Padding(5, 6, 5, 6);
-            txtDurableId.Name = "txtDurableId";
-            txtDurableId.Size = new Size(172, 44);
-            txtDurableId.TabIndex = 4;
+            label6.AutoSize = true;
+            label6.Location = new Point(1005, 96);
+            label6.Name = "label6";
+            label6.Size = new Size(27, 36);
+            label6.TabIndex = 17;
+            label6.Text = "*";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(1005, 17);
+            label7.Name = "label7";
+            label7.Size = new Size(27, 36);
+            label7.TabIndex = 16;
+            label7.Text = "*";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(475, 95);
+            label4.Name = "label4";
+            label4.Size = new Size(27, 36);
+            label4.TabIndex = 15;
+            label4.Text = "*";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(475, 16);
+            label5.Name = "label5";
+            label5.Size = new Size(27, 36);
+            label5.TabIndex = 14;
+            label5.Text = "*";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(349, 0);
-            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Location = new Point(24, 95);
             label2.Name = "label2";
-            label2.Size = new Size(152, 36);
-            label2.TabIndex = 9;
-            label2.Text = "载具类型:";
+            label2.Size = new Size(27, 36);
+            label2.TabIndex = 13;
+            label2.Text = "*";
             // 
-            // txtCarrierType
+            // label1
             // 
-            txtCarrierType.Location = new Point(511, 6);
-            txtCarrierType.Margin = new Padding(5, 6, 5, 6);
-            txtCarrierType.Name = "txtCarrierType";
-            txtCarrierType.Size = new Size(172, 44);
-            txtCarrierType.TabIndex = 5;
+            label1.AutoSize = true;
+            label1.ForeColor = Color.Red;
+            label1.Location = new Point(24, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(27, 36);
+            label1.TabIndex = 12;
+            label1.Text = "*";
             // 
-            // btnEdit
+            // txtCarrierNumber
             // 
-            btnEdit.Location = new Point(693, 6);
-            btnEdit.Margin = new Padding(5, 6, 5, 6);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(131, 48);
-            btnEdit.TabIndex = 13;
-            btnEdit.Text = "编辑";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
+            txtCarrierNumber.Location = new Point(1179, 88);
+            txtCarrierNumber.Name = "txtCarrierNumber";
+            txtCarrierNumber.Size = new Size(241, 44);
+            txtCarrierNumber.TabIndex = 11;
             // 
-            // btnDelete
+            // carrierNotxt
             // 
-            btnDelete.Location = new Point(834, 6);
-            btnDelete.Margin = new Padding(5, 6, 5, 6);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(131, 48);
-            btnDelete.TabIndex = 14;
-            btnDelete.Text = "删除";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
+            carrierNotxt.AutoSize = true;
+            carrierNotxt.Location = new Point(1026, 91);
+            carrierNotxt.Name = "carrierNotxt";
+            carrierNotxt.Size = new Size(111, 36);
+            carrierNotxt.TabIndex = 10;
+            carrierNotxt.Text = "载具号";
             // 
-            // btnSearch
+            // comboBoxCapacityStatus
             // 
-            btnSearch.Location = new Point(975, 6);
-            btnSearch.Margin = new Padding(5, 6, 5, 6);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(131, 48);
-            btnSearch.TabIndex = 15;
-            btnSearch.Text = "查询";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
+            comboBoxCapacityStatus.FormattingEnabled = true;
+            comboBoxCapacityStatus.Location = new Point(1179, 6);
+            comboBoxCapacityStatus.Name = "comboBoxCapacityStatus";
+            comboBoxCapacityStatus.Size = new Size(241, 44);
+            comboBoxCapacityStatus.TabIndex = 9;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1025, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(143, 36);
+            label3.TabIndex = 8;
+            label3.Text = "容量状态";
+            // 
+            // comboBoxCarrierStatus
+            // 
+            comboBoxCarrierStatus.FormattingEnabled = true;
+            comboBoxCarrierStatus.Location = new Point(730, 87);
+            comboBoxCarrierStatus.Name = "comboBoxCarrierStatus";
+            comboBoxCarrierStatus.Size = new Size(241, 44);
+            comboBoxCarrierStatus.TabIndex = 7;
+            // 
+            // carrierStatustxt
+            // 
+            carrierStatustxt.AutoSize = true;
+            carrierStatustxt.Location = new Point(496, 90);
+            carrierStatustxt.Name = "carrierStatustxt";
+            carrierStatustxt.Size = new Size(143, 36);
+            carrierStatustxt.TabIndex = 6;
+            carrierStatustxt.Text = "载具状态";
+            // 
+            // comboBoxDurableItemSpec
+            // 
+            comboBoxDurableItemSpec.FormattingEnabled = true;
+            comboBoxDurableItemSpec.Location = new Point(730, 10);
+            comboBoxDurableItemSpec.Name = "comboBoxDurableItemSpec";
+            comboBoxDurableItemSpec.Size = new Size(241, 44);
+            comboBoxDurableItemSpec.TabIndex = 5;
+            // 
+            // durableIdtxt
+            // 
+            durableIdtxt.AutoSize = true;
+            durableIdtxt.Location = new Point(496, 13);
+            durableIdtxt.Name = "durableIdtxt";
+            durableIdtxt.Size = new Size(207, 36);
+            durableIdtxt.TabIndex = 4;
+            durableIdtxt.Text = "耐用品规格号";
+            // 
+            // comboBoxCleaningStatus
+            // 
+            comboBoxCleaningStatus.FormattingEnabled = true;
+            comboBoxCleaningStatus.Location = new Point(213, 87);
+            comboBoxCleaningStatus.Name = "comboBoxCleaningStatus";
+            comboBoxCleaningStatus.Size = new Size(241, 44);
+            comboBoxCleaningStatus.TabIndex = 3;
+            // 
+            // comboBoxCarrierType
+            // 
+            comboBoxCarrierType.FormattingEnabled = true;
+            comboBoxCarrierType.Location = new Point(213, 8);
+            comboBoxCarrierType.Name = "comboBoxCarrierType";
+            comboBoxCarrierType.Size = new Size(241, 44);
+            comboBoxCarrierType.TabIndex = 2;
+            // 
+            // cleaningStatustxt
+            // 
+            cleaningStatustxt.AutoSize = true;
+            cleaningStatustxt.Location = new Point(47, 90);
+            cleaningStatustxt.Name = "cleaningStatustxt";
+            cleaningStatustxt.Size = new Size(143, 36);
+            cleaningStatustxt.TabIndex = 1;
+            cleaningStatustxt.Text = "清洗状态";
+            // 
+            // carrierTypetxt
+            // 
+            carrierTypetxt.AutoSize = true;
+            carrierTypetxt.Location = new Point(47, 8);
+            carrierTypetxt.Name = "carrierTypetxt";
+            carrierTypetxt.Size = new Size(143, 36);
+            carrierTypetxt.TabIndex = 0;
+            carrierTypetxt.Text = "载具类型";
+            // 
+            // carrierList
+            // 
+            carrierList.AutoSize = true;
+            carrierList.Font = new Font("等线", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            carrierList.Location = new Point(12, 167);
+            carrierList.Name = "carrierList";
+            carrierList.Size = new Size(143, 33);
+            carrierList.TabIndex = 19;
+            carrierList.Text = "载具清单";
             // 
             // FrmCarrier
             // 
             AutoScaleDimensions = new SizeF(18F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1345, 890);
+            ClientSize = new Size(1629, 890);
+            Controls.Add(carrierList);
+            Controls.Add(panel1);
             Controls.Add(dataGridViewCarriers);
-            Controls.Add(flowLayoutPanel1);
             Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(5, 6, 5, 6);
             Name = "FrmCarrier";
             Text = "载具管理";
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarriers).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.DataGridView dataGridViewCarriers;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox txtDurableId;
-        private System.Windows.Forms.TextBox txtCarrierType;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSearch;
+        private Panel panel1;
+        private ComboBox comboBoxDurableItemSpec;
+        private Label durableIdtxt;
+        private ComboBox comboBoxCleaningStatus;
+        private ComboBox comboBoxCarrierType;
+        private Label cleaningStatustxt;
+        private Label carrierTypetxt;
+        private ComboBox comboBoxCarrierStatus;
+        private Label carrierStatustxt;
+        private TextBox txtCarrierNumber;
+        private Label carrierNotxt;
+        private ComboBox comboBoxCapacityStatus;
+        private Label label3;
+        private Label label1;
+        private Label label6;
+        private Label label7;
+        private Label label4;
+        private Label label5;
+        private Label label2;
+        private Button SearchBtn;
+        private Label carrierList;
     }
 }

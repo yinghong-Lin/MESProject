@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MDM.Model.UserEntities
 {
@@ -14,13 +10,13 @@ namespace MDM.Model.UserEntities
         public string DurableId { get; set; }
         public string EquipmentId { get; set; }
         public string PortId { get; set; }
-        public string HandlingStatus { get; set; }
+        public string CarrierStatus { get; set; }
         public string CleaningStatus { get; set; }
         public string LockStatus { get; set; }
         public int BatchCapacity { get; set; }
         public int CurrentQty { get; set; }
+        public string CapacityStatus { get; set; }
         public string Location { get; set; }
         public DateTime? LastMaintenanceDate { get; set; }
-        public Durable Durable { get; set; }
     }
 }
