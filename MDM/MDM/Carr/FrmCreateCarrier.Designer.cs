@@ -37,7 +37,7 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            textBox1 = new TextBox();
+            txtDurableId = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -66,13 +66,11 @@
             button2 = new Button();
             label20 = new Label();
             btnSearch = new Button();
-            txtDurableId = new TextBox();
             label3 = new Label();
             txtCarrierType = new TextBox();
             label2 = new Label();
-            txtCarrierNo = new TextBox();
-            label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            comboBoxDurableId = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -187,13 +185,13 @@
             label9.TabIndex = 7;
             label9.Text = "位置号";
             // 
-            // textBox1
+            // txtDurableId
             // 
-            textBox1.BackColor = SystemColors.ScrollBar;
-            textBox1.Location = new Point(209, 28);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(253, 38);
-            textBox1.TabIndex = 8;
+            txtDurableId.BackColor = SystemColors.ScrollBar;
+            txtDurableId.Location = new Point(209, 28);
+            txtDurableId.Name = "txtDurableId";
+            txtDurableId.Size = new Size(253, 38);
+            txtDurableId.TabIndex = 8;
             // 
             // textBox2
             // 
@@ -388,7 +386,7 @@
             createInfoPanel.Controls.Add(radioButton1);
             createInfoPanel.Controls.Add(label8);
             createInfoPanel.Controls.Add(numericUpDown1);
-            createInfoPanel.Controls.Add(textBox1);
+            createInfoPanel.Controls.Add(txtDurableId);
             createInfoPanel.Controls.Add(textBox2);
             createInfoPanel.Controls.Add(textBox3);
             createInfoPanel.Controls.Add(comboBox1);
@@ -468,7 +466,7 @@
             // 
             btnSearch.BackColor = SystemColors.HotTrack;
             btnSearch.ForeColor = SystemColors.ButtonFace;
-            btnSearch.Location = new Point(953, 6);
+            btnSearch.Location = new Point(1296, 27);
             btnSearch.Margin = new Padding(5, 6, 5, 6);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(131, 48);
@@ -477,19 +475,10 @@
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
-            // txtDurableId
-            // 
-            txtDurableId.Location = new Point(771, 6);
-            txtDurableId.Margin = new Padding(5, 6, 5, 6);
-            txtDurableId.Name = "txtDurableId";
-            txtDurableId.ReadOnly = true;
-            txtDurableId.Size = new Size(172, 38);
-            txtDurableId.TabIndex = 16;
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(597, 0);
+            label3.Location = new Point(265, 0);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(164, 31);
@@ -498,7 +487,7 @@
             // 
             // txtCarrierType
             // 
-            txtCarrierType.Location = new Point(415, 6);
+            txtCarrierType.Location = new Point(83, 6);
             txtCarrierType.Margin = new Padding(5, 6, 5, 6);
             txtCarrierType.Name = "txtCarrierType";
             txtCarrierType.Size = new Size(172, 38);
@@ -507,45 +496,32 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(289, 0);
+            label2.Location = new Point(5, 0);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(116, 31);
+            label2.Size = new Size(68, 31);
             label2.TabIndex = 9;
-            label2.Text = "载具类型:";
-            // 
-            // txtCarrierNo
-            // 
-            txtCarrierNo.Location = new Point(107, 6);
-            txtCarrierNo.Margin = new Padding(5, 6, 5, 6);
-            txtCarrierNo.Name = "txtCarrierNo";
-            txtCarrierNo.Size = new Size(172, 38);
-            txtCarrierNo.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(5, 0);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(92, 31);
-            label1.TabIndex = 8;
-            label1.Text = "载具号:";
+            label2.Text = "类型:";
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Controls.Add(txtCarrierNo);
             flowLayoutPanel1.Controls.Add(label2);
             flowLayoutPanel1.Controls.Add(txtCarrierType);
             flowLayoutPanel1.Controls.Add(label3);
-            flowLayoutPanel1.Controls.Add(txtDurableId);
-            flowLayoutPanel1.Controls.Add(btnSearch);
+            flowLayoutPanel1.Controls.Add(comboBoxDurableId);
             flowLayoutPanel1.Location = new Point(48, 10);
             flowLayoutPanel1.Margin = new Padding(5, 6, 5, 6);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1335, 65);
+            flowLayoutPanel1.Size = new Size(734, 65);
             flowLayoutPanel1.TabIndex = 1;
+            // 
+            // comboBoxDurableId
+            // 
+            comboBoxDurableId.FormattingEnabled = true;
+            comboBoxDurableId.Location = new Point(437, 3);
+            comboBoxDurableId.Name = "comboBoxDurableId";
+            comboBoxDurableId.Size = new Size(206, 39);
+            comboBoxDurableId.TabIndex = 18;
             // 
             // FrmCreateCarrier
             // 
@@ -556,6 +532,7 @@
             Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(textBox8);
+            Controls.Add(btnSearch);
             Controls.Add(label18);
             Controls.Add(label19);
             Controls.Add(createInfoPanel);
@@ -593,7 +570,7 @@
         private Label label7;
         private Label label8;
         private Label label9;
-        private TextBox textBox1;
+        private TextBox txtDurableId;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
@@ -622,12 +599,10 @@
         private Button button2;
         private Label label20;
         private Button btnSearch;
-        private TextBox txtDurableId;
         private Label label3;
         private TextBox txtCarrierType;
         private Label label2;
-        private TextBox txtCarrierNo;
-        private Label label1;
         private FlowLayoutPanel flowLayoutPanel1;
+        private ComboBox comboBoxDurableId;
     }
 }

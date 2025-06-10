@@ -110,11 +110,8 @@ namespace MDM.DAL.Carr
                                 DurableDetailType = reader["durable_detail_type"].ToString(),
                                 DurableColor = reader["durable_color"].ToString(),
                                 DurableQty = Convert.ToInt32(reader["durable_qty"]),
-                                ExpectedLife = Convert.ToInt32(reader["expected_life"]),
-                                MaxUsage = Convert.ToInt32(reader["max_usage"]),
-                                MaxUsageDays = Convert.ToInt32(reader["max_usage_days"]),
-                                PostCleanMaxUsage = Convert.ToInt32(reader["post_clean_max_usage"]),
-                                PostCleanMaxDays = Convert.ToInt32(reader["post_clean_max_days"])
+                                DurableCapacity = Convert.ToInt32(reader["durable_capacity"]),
+                                FactoryId = reader["factory_id"].ToString()
                             });
                         }
                     }
