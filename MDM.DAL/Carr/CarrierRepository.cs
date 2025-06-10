@@ -110,17 +110,63 @@ namespace MDM.DAL.Carr
                                 DurableDetailType = reader["durable_detail_type"].ToString(),
                                 DurableColor = reader["durable_color"].ToString(),
                                 DurableQty = Convert.ToInt32(reader["durable_qty"]),
+                                DurableCapacity = Convert.ToInt32(reader["durable_capacity"]),
                                 ExpectedLife = Convert.ToInt32(reader["expected_life"]),
                                 MaxUsage = Convert.ToInt32(reader["max_usage"]),
                                 MaxUsageDays = Convert.ToInt32(reader["max_usage_days"]),
                                 PostCleanMaxUsage = Convert.ToInt32(reader["post_clean_max_usage"]),
-                                PostCleanMaxDays = Convert.ToInt32(reader["post_clean_max_days"])
+                                PostCleanMaxDays = Convert.ToInt32(reader["post_clean_max_days"]),
+                                FactoryId = reader["factory_id"].ToString()
                             });
                         }
                     }
                 }
             }
             return durables;
+        }
+
+        public bool InsertCarrier(Carrier carrier)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO carriers 
+                                    (carrier_no, carrier_type, carrier_detail_type, durable_id, equipment_id, port_id, 
+                                    carrier_status, cleaning_status, lock_status, batch_capacity, current_qty, 
+                                    capacity_status, location, last_maintenance_date)
+                                    VALUES 
+                                    (@carrierNo, @carrierType, @carrierDetailType, @durableId, @equipmentId, @portId, 
+                                    @carrierStatus, @cleaningStatus, @lockStatus, @batchCapacity, @currentQty, 
+                                    @capacityStatus, @location, @lastMaintenanceDate)";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@carrierNo", carrier.CarrierNo);
+                        command.Parameters.AddWithValue("@carrierType", carrier.CarrierType);
+                        command.Parameters.AddWithValue("@carrierDetailType", carrier.CarrierDetailType);
+                        command.Parameters.AddWithValue("@durableId", carrier.DurableId);
+                        command.Parameters.AddWithValue("@equipmentId", carrier.EquipmentId);
+                        command.Parameters.AddWithValue("@portId", carrier.PortId);
+                        command.Parameters.AddWithValue("@carrierStatus", carrier.CarrierStatus);
+                        command.Parameters.AddWithValue("@cleaningStatus", carrier.CleaningStatus);
+                        command.Parameters.AddWithValue("@lockStatus", carrier.LockStatus);
+                        command.Parameters.AddWithValue("@batchCapacity", carrier.BatchCapacity);
+                        command.Parameters.AddWithValue("@currentQty", carrier.CurrentQty);
+                        command.Parameters.AddWithValue("@capacityStatus", carrier.CapacityStatus);
+                        command.Parameters.AddWithValue("@location", carrier.Location);
+                        command.Parameters.AddWithValue("@lastMaintenanceDate", carrier.LastMaintenanceDate);
+
+                        connection.Open();
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error inserting carrier: {ex.Message}");
+                return false;
+            }
         }
     }
 }

@@ -10,10 +10,12 @@ namespace MDM.Model.UserEntities
         public string DurableDetailType { get; set; }
         public string DurableColor { get; set; }
         public int DurableQty { get; set; }
+        public int DurableCapacity { get; set; }
         public int ExpectedLife { get; set; }
         public int MaxUsage { get; set; }
         public int MaxUsageDays { get; set; }
         public int PostCleanMaxUsage { get; set; }
         public int PostCleanMaxDays { get; set; }
+        public string FactoryId { get; set; }
     }
 }
