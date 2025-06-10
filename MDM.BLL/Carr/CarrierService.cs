@@ -9,6 +9,7 @@ namespace MDM.BLL.Carr
         List<Carrier> GetAllCarriers();
         List<Durable> GetAllDurables();
         List<Carrier> GetCarriersByDurableId(string durableId);
+        bool InsertCarrier(Carrier carrier);
     }
 
     public class CarrierService : ICarrierService
@@ -25,5 +26,7 @@ namespace MDM.BLL.Carr
         public List<Durable> GetAllDurables() => _repository.GetAllDurables();
 
         public List<Carrier> GetCarriersByDurableId(string durableId) => _repository.GetCarriersByDurableId(durableId);
+
+        public bool InsertCarrier(Carrier carrier) => _repository.InsertCarrier(carrier);
     }
 }

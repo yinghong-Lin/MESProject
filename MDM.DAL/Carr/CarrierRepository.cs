@@ -119,5 +119,40 @@ namespace MDM.DAL.Carr
             }
             return durables;
         }
+        public bool InsertCarrier(Carrier carrier)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    string query = @"INSERT INTO carriers 
+                                    (carrier_no, carrier_type, durable_id, location, batch_capacity, current_qty, capacity_status, carrier_status, cleaning_status, last_maintenance_date)
+                                    VALUES 
+                                    (@carrierNo, @carrierType, @durableId, @location, @batchCapacity, @currentQty, @capacityStatus, @carrierStatus, @cleaningStatus, @lastMaintenanceDate)";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@carrierNo", carrier.CarrierNo);
+                        command.Parameters.AddWithValue("@carrierType", carrier.CarrierType);
+                        command.Parameters.AddWithValue("@durableId", carrier.DurableId);
+                        command.Parameters.AddWithValue("@location", carrier.Location);
+                        command.Parameters.AddWithValue("@batchCapacity", carrier.BatchCapacity);
+                        command.Parameters.AddWithValue("@currentQty", carrier.CurrentQty);
+                        command.Parameters.AddWithValue("@capacityStatus", carrier.CapacityStatus);
+                        command.Parameters.AddWithValue("@carrierStatus", carrier.CarrierStatus);
+                        command.Parameters.AddWithValue("@cleaningStatus", carrier.CleaningStatus);
+                        command.Parameters.AddWithValue("@lastMaintenanceDate", carrier.LastMaintenanceDate);
+
+                        connection.Open();
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error inserting carrier: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

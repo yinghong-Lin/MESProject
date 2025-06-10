@@ -39,23 +39,23 @@
             label9 = new Label();
             txtDurableId = new TextBox();
             textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            txtcarrierType = new TextBox();
+            txtMaxUsage = new TextBox();
+            txtMaxClean = new TextBox();
+            txtCapacity = new TextBox();
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
             label13 = new Label();
             label14 = new Label();
             label15 = new Label();
-            comboBox1 = new ComboBox();
+            comboBoxLocation = new ComboBox();
             label16 = new Label();
             label17 = new Label();
             numericUpDown1 = new NumericUpDown();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
-            textBox7 = new TextBox();
+            txtCarrierId = new TextBox();
             clearbtn = new Button();
             createbtn = new Button();
             createInfoPanel = new Panel();
@@ -67,9 +67,9 @@
             label20 = new Label();
             btnSearch = new Button();
             label3 = new Label();
-            txtCarrierType = new TextBox();
             label2 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            comboBoxType = new ComboBox();
             comboBoxDurableId = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -84,7 +84,7 @@
             // 
             // splitContainer1
             // 
-            splitContainer1.Location = new Point(48, 145);
+            splitContainer1.Location = new Point(48, 127);
             splitContainer1.Margin = new Padding(5, 6, 5, 6);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -128,7 +128,7 @@
             dataGridViewCarriers.ReadOnly = true;
             dataGridViewCarriers.RowHeadersWidth = 51;
             dataGridViewCarriers.RowTemplate.Height = 24;
-            dataGridViewCarriers.Size = new Size(866, 506);
+            dataGridViewCarriers.Size = new Size(866, 509);
             dataGridViewCarriers.TabIndex = 0;
             // 
             // label4
@@ -201,37 +201,37 @@
             textBox2.Size = new Size(373, 38);
             textBox2.TabIndex = 9;
             // 
-            // textBox3
+            // txtcarrierType
             // 
-            textBox3.BackColor = SystemColors.ScrollBar;
-            textBox3.Location = new Point(209, 80);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(253, 38);
-            textBox3.TabIndex = 10;
+            txtcarrierType.BackColor = SystemColors.ScrollBar;
+            txtcarrierType.Location = new Point(209, 80);
+            txtcarrierType.Name = "txtcarrierType";
+            txtcarrierType.Size = new Size(253, 38);
+            txtcarrierType.TabIndex = 10;
             // 
-            // textBox4
+            // txtMaxUsage
             // 
-            textBox4.BackColor = SystemColors.ScrollBar;
-            textBox4.Location = new Point(209, 145);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(253, 38);
-            textBox4.TabIndex = 11;
+            txtMaxUsage.BackColor = SystemColors.ScrollBar;
+            txtMaxUsage.Location = new Point(209, 145);
+            txtMaxUsage.Name = "txtMaxUsage";
+            txtMaxUsage.Size = new Size(253, 38);
+            txtMaxUsage.TabIndex = 11;
             // 
-            // textBox5
+            // txtMaxClean
             // 
-            textBox5.BackColor = SystemColors.ScrollBar;
-            textBox5.Location = new Point(209, 209);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(253, 38);
-            textBox5.TabIndex = 12;
+            txtMaxClean.BackColor = SystemColors.ScrollBar;
+            txtMaxClean.Location = new Point(209, 209);
+            txtMaxClean.Name = "txtMaxClean";
+            txtMaxClean.Size = new Size(253, 38);
+            txtMaxClean.TabIndex = 12;
             // 
-            // textBox6
+            // txtCapacity
             // 
-            textBox6.BackColor = SystemColors.ScrollBar;
-            textBox6.Location = new Point(209, 270);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(253, 38);
-            textBox6.TabIndex = 13;
+            txtCapacity.BackColor = SystemColors.ScrollBar;
+            txtCapacity.Location = new Point(209, 270);
+            txtCapacity.Name = "txtCapacity";
+            txtCapacity.Size = new Size(253, 38);
+            txtCapacity.TabIndex = 13;
             // 
             // label10
             // 
@@ -287,18 +287,18 @@
             label15.TabIndex = 19;
             label15.Text = "*";
             // 
-            // comboBox1
+            // comboBoxLocation
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(651, 85);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(206, 39);
-            comboBox1.TabIndex = 20;
+            comboBoxLocation.FormattingEnabled = true;
+            comboBoxLocation.Location = new Point(651, 85);
+            comboBoxLocation.Name = "comboBoxLocation";
+            comboBoxLocation.Size = new Size(206, 39);
+            comboBoxLocation.TabIndex = 20;
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(48, 108);
+            label16.Location = new Point(48, 90);
             label16.Name = "label16";
             label16.Size = new Size(134, 31);
             label16.TabIndex = 21;
@@ -307,7 +307,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(577, 108);
+            label17.Location = new Point(577, 90);
             label17.Name = "label17";
             label17.Size = new Size(110, 31);
             label17.TabIndex = 22;
@@ -342,13 +342,13 @@
             radioButton2.Text = "载具号";
             radioButton2.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // txtCarrierId
             // 
-            textBox7.BackColor = SystemColors.ScrollBar;
-            textBox7.Location = new Point(653, 212);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(204, 38);
-            textBox7.TabIndex = 27;
+            txtCarrierId.BackColor = SystemColors.ScrollBar;
+            txtCarrierId.Location = new Point(653, 212);
+            txtCarrierId.Name = "txtCarrierId";
+            txtCarrierId.Size = new Size(204, 38);
+            txtCarrierId.TabIndex = 27;
             // 
             // clearbtn
             // 
@@ -379,7 +379,7 @@
             createInfoPanel.Controls.Add(label4);
             createInfoPanel.Controls.Add(clearbtn);
             createInfoPanel.Controls.Add(label5);
-            createInfoPanel.Controls.Add(textBox7);
+            createInfoPanel.Controls.Add(txtCarrierId);
             createInfoPanel.Controls.Add(label6);
             createInfoPanel.Controls.Add(radioButton2);
             createInfoPanel.Controls.Add(label7);
@@ -388,18 +388,18 @@
             createInfoPanel.Controls.Add(numericUpDown1);
             createInfoPanel.Controls.Add(txtDurableId);
             createInfoPanel.Controls.Add(textBox2);
-            createInfoPanel.Controls.Add(textBox3);
-            createInfoPanel.Controls.Add(comboBox1);
-            createInfoPanel.Controls.Add(textBox4);
+            createInfoPanel.Controls.Add(txtcarrierType);
+            createInfoPanel.Controls.Add(comboBoxLocation);
+            createInfoPanel.Controls.Add(txtMaxUsage);
             createInfoPanel.Controls.Add(label15);
-            createInfoPanel.Controls.Add(textBox5);
+            createInfoPanel.Controls.Add(txtMaxClean);
             createInfoPanel.Controls.Add(label14);
-            createInfoPanel.Controls.Add(textBox6);
+            createInfoPanel.Controls.Add(txtCapacity);
             createInfoPanel.Controls.Add(label13);
             createInfoPanel.Controls.Add(label10);
             createInfoPanel.Controls.Add(label12);
             createInfoPanel.Controls.Add(label11);
-            createInfoPanel.Location = new Point(53, 678);
+            createInfoPanel.Location = new Point(48, 681);
             createInfoPanel.Name = "createInfoPanel";
             createInfoPanel.Size = new Size(942, 326);
             createInfoPanel.TabIndex = 30;
@@ -407,7 +407,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(74, 1025);
+            label18.Location = new Point(69, 1028);
             label18.Name = "label18";
             label18.Size = new Size(62, 31);
             label18.TabIndex = 30;
@@ -417,7 +417,7 @@
             // 
             label19.AutoSize = true;
             label19.ForeColor = Color.IndianRed;
-            label19.Location = new Point(52, 1032);
+            label19.Location = new Point(47, 1035);
             label19.Name = "label19";
             label19.Size = new Size(25, 31);
             label19.TabIndex = 31;
@@ -426,7 +426,7 @@
             // textBox8
             // 
             textBox8.BackColor = SystemColors.Window;
-            textBox8.Location = new Point(183, 1025);
+            textBox8.Location = new Point(178, 1028);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(877, 38);
             textBox8.TabIndex = 30;
@@ -435,7 +435,7 @@
             // 
             button1.BackColor = SystemColors.HotTrack;
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(1277, 1020);
+            button1.Location = new Point(1264, 1020);
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 31;
@@ -446,7 +446,7 @@
             // 
             button2.BackColor = SystemColors.HotTrack;
             button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(1102, 1021);
+            button2.Location = new Point(1089, 1021);
             button2.Name = "button2";
             button2.Size = new Size(150, 46);
             button2.TabIndex = 30;
@@ -456,7 +456,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(54, 644);
+            label20.Location = new Point(48, 636);
             label20.Name = "label20";
             label20.Size = new Size(110, 31);
             label20.TabIndex = 32;
@@ -478,20 +478,12 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(265, 0);
+            label3.Location = new Point(295, 0);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(164, 31);
             label3.TabIndex = 17;
             label3.Text = "耐用品规格号:";
-            // 
-            // txtCarrierType
-            // 
-            txtCarrierType.Location = new Point(83, 6);
-            txtCarrierType.Margin = new Padding(5, 6, 5, 6);
-            txtCarrierType.Name = "txtCarrierType";
-            txtCarrierType.Size = new Size(172, 38);
-            txtCarrierType.TabIndex = 5;
             // 
             // label2
             // 
@@ -506,7 +498,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Controls.Add(label2);
-            flowLayoutPanel1.Controls.Add(txtCarrierType);
+            flowLayoutPanel1.Controls.Add(comboBoxType);
             flowLayoutPanel1.Controls.Add(label3);
             flowLayoutPanel1.Controls.Add(comboBoxDurableId);
             flowLayoutPanel1.Location = new Point(48, 10);
@@ -515,10 +507,18 @@
             flowLayoutPanel1.Size = new Size(734, 65);
             flowLayoutPanel1.TabIndex = 1;
             // 
+            // comboBoxType
+            // 
+            comboBoxType.FormattingEnabled = true;
+            comboBoxType.Location = new Point(81, 3);
+            comboBoxType.Name = "comboBoxType";
+            comboBoxType.Size = new Size(206, 39);
+            comboBoxType.TabIndex = 19;
+            // 
             // comboBoxDurableId
             // 
             comboBoxDurableId.FormattingEnabled = true;
-            comboBoxDurableId.Location = new Point(437, 3);
+            comboBoxDurableId.Location = new Point(467, 3);
             comboBoxDurableId.Name = "comboBoxDurableId";
             comboBoxDurableId.Size = new Size(206, 39);
             comboBoxDurableId.TabIndex = 18;
@@ -527,7 +527,7 @@
             // 
             AutoScaleDimensions = new SizeF(14F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1520, 1103);
+            ClientSize = new Size(1640, 1176);
             Controls.Add(label20);
             Controls.Add(button1);
             Controls.Add(button2);
@@ -572,23 +572,23 @@
         private Label label9;
         private TextBox txtDurableId;
         private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox txtcarrierType;
+        private TextBox txtMaxUsage;
+        private TextBox txtMaxClean;
+        private TextBox txtCapacity;
         private Label label10;
         private Label label11;
         private Label label12;
         private Label label13;
         private Label label14;
         private Label label15;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxLocation;
         private Label label16;
         private Label label17;
         private NumericUpDown numericUpDown1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
-        private TextBox textBox7;
+        private TextBox txtCarrierId;
         private Button clearbtn;
         private Button createbtn;
         private Panel createInfoPanel;
@@ -600,9 +600,9 @@
         private Label label20;
         private Button btnSearch;
         private Label label3;
-        private TextBox txtCarrierType;
         private Label label2;
         private FlowLayoutPanel flowLayoutPanel1;
         private ComboBox comboBoxDurableId;
+        private ComboBox comboBoxType;
     }
 }

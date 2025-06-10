@@ -184,6 +184,7 @@ VALUES
 (14, '单批次出战', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
 (15, '跳工站', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
 (16, '生产返修', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
+(24, '主页面', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
 
 (17, '载具', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
 (18, '载具主页面', 'c', NULL, 17, NULL, NULL, NULL, NOW(), NULL),
@@ -192,7 +193,8 @@ VALUES
 (20, '物料', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
 (21, '创建物料', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL),
 (22, '上料', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL),
-(23, '下物', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL);
+(23, '下料', 'c', NULL, 20, NULL, NULL, NULL, NOW(), NULL);
+
 
 
 -- 插入 permission_menu 表数据
@@ -220,7 +222,8 @@ VALUES
 (20, 'BW_MDM', 20, NULL, NULL, NULL, '2025-04-29 10:55:41', NULL),
 (21, 'BW_MDM', 21, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
 (22, 'BW_MDM', 22, NULL, NULL, NULL, '2025-04-29 10:55:51', NULL),
-(23, 'BW_MDM', 23, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL);
+(23, 'BW_MDM', 23, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL),
+(24, 'BW_MDM', 24, NULL, NULL, NULL, '2025-04-29 09:14:37', NULL);
 
 
 -- 插入 permissions 表数据
@@ -424,10 +427,10 @@ VALUES
 ('P002', '传感器', '光学传感器', 'PG002', '1', 'create');
 
 -- 插入工站表（opers）数据
-INSERT INTO opers (oper_id, oper_version, is_active, factory_id, event_type, oper_description)
+INSERT INTO opers (oper_id, oper_version, is_active, factory_id, event_type)
 VALUES 
-('OP001', 'V1', 1, '1', 'create', '这是工站OP001的描述'),
-('OP002', 'V2', 1, '1', 'create', '这是工站OP002的描述');
+('OP001', 'V1', 1, '1', 'create'),
+('OP002', 'V2', 1, '1', 'create');
 
 
 -- 插入工艺流程表（flows）数据
