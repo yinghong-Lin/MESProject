@@ -16,6 +16,7 @@ using MDM.DAL.Equipment;
 using MDM.DAL.Process;
 using MDM.DAL.Carr;
 using MDM.Model;
+using MDM.UI.WorkOrders;
 
 namespace MDM.UI.MainForms
 {
@@ -144,7 +145,6 @@ namespace MDM.UI.MainForms
                         var carrierRepository = new CarrierRepository(_connectionString); // 假设你已经实现了CarrierRepository
                         var carrierService = new CarrierService(carrierRepository); // 假设你已经实现了CarrierService
                         childForm = new FrmCreateCarrier(carrierService); // 假设你已经实现了FrmCreateCarrier窗体
-
                     }
                     catch (Exception ex)
                     {
@@ -155,9 +155,7 @@ namespace MDM.UI.MainForms
                 case "单批次进站":
                     try
                     {
-
                         childForm = new FrmWorkStation();
-
                     }
                     catch (Exception ex)
                     {
@@ -181,6 +179,52 @@ namespace MDM.UI.MainForms
                     {
                         Debug.WriteLine($"创建生产维修窗体时发生异常: {ex.Message}");
                         MessageBox.Show($"创建生产维修窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case "创建工单":
+                    try
+                    {
+                        Debug.WriteLine("正在打开创建工单窗体...");
+                        // 使用正确的构造函数创建窗体
+                        childForm = new FrmCreateWorkOrder();
+                        Debug.WriteLine("创建工单窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"创建工单窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"创建工单窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
+                case "取消创建工单":
+                    try
+                    {
+                        // 实际项目中这里应创建取消工单相关的窗体
+                        // 示例：childForm = new FrmCancelWorkOrder();
+                        Debug.WriteLine("正在打开取消创建工单窗体...");
+                        childForm = new FrmCancelWorkOrder();
+                        Debug.WriteLine("取消创建工单窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"取消创建工单窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"取消创建工单窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
+                case "投工单":
+                    try
+                    {
+                        // 实际项目中这里应创建投工单相关的窗体
+                        // 示例：childForm = new FrmDispatchWorkOrder();
+                        Debug.WriteLine("正在打开投工单窗体...");
+                        childForm = new FrmDispatchWorkOrder();
+                        Debug.WriteLine("投工单窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"投工单窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"投工单窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
 

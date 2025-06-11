@@ -1,0 +1,53 @@
+-- 创建工单表
+CREATE TABLE `work_order_list` (
+  `work_order_id` varchar(20) NOT NULL COMMENT '工单号',
+  `work_order_type` varchar(20) NOT NULL COMMENT '工单类型',
+  `work_order_description` varchar(50) NULL COMMENT '工单说明',
+  `finished_work_order_no` varchar(50) NULL COMMENT '成品工单号',
+  `bom` varchar(50) NULL COMMENT 'BOM编码',
+  `bom_version` varchar(10) NOT NULL COMMENT 'BOM版本号',
+  `product_type` varchar(50) NOT NULL COMMENT '产品类型',
+  `detail_type` varchar(50) NOT NULL COMMENT '详细类型',
+  `product_id` varchar(20) NOT NULL COMMENT '产品编号',
+  `process_flow` varchar(50) NOT NULL COMMENT '工艺流程号',
+  `planned_quantity` int NOT NULL COMMENT '计划生产数量',
+  `process_version` varchar(10) NOT NULL COMMENT '工艺版本',
+  `test_program` varchar(50) DEFAULT NULL COMMENT '测试程序号',
+  `company_code` varchar(20) NULL COMMENT '公司号',
+  `planned_start_date` date NOT NULL COMMENT '计划开始日期',
+  `planned_end_date` date DEFAULT NULL COMMENT '计划结束日期',
+  `customer_lot_no` varchar(50) NULL COMMENT '客户批次号',
+  `product_category` varchar(20) DEFAULT NULL COMMENT '产品类别',
+  `unit` varchar(10) DEFAULT NULL COMMENT '单位',
+  `film_thickness` varchar(20) DEFAULT NULL COMMENT '膜片厚度',
+  `package_form` varchar(50) DEFAULT NULL COMMENT '封装形式',
+  `work_order_status` varchar(20) NULL COMMENT '工单状态',
+  `product_description` varchar(50) NULL COMMENT '产品说明',
+  PRIMARY KEY (`work_order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- 插入工单数据
+INSERT INTO work_order_list (
+    work_order_id, work_order_type, work_order_description, finished_work_order_no, 
+    bom, bom_version, product_type, detail_type, product_id, process_flow, 
+    planned_quantity, process_version, test_program, company_code, planned_start_date, 
+    planned_end_date, customer_lot_no, product_category, unit, film_thickness, 
+    package_form, work_order_status, product_description
+) VALUES 
+('WO001', '生产工单', '批量生产任务', 'FWO001', 
+ 'BOM001', 'V1.0', '电子产品', '芯片', 'P001', 'FLOW001', 
+ 500, 'PV1', 'TEST001', 'COMP001', '2023-10-01', 
+ '2023-10-15', 'LOT001', '消费电子', 'PCS', '0.5mm', 
+ 'BGA', '进行中', '高性能芯片'),
+
+('WO002', '生产工单', '测试阶段任务', 'FWO002', 
+ 'BOM002', 'V2.0', '汽车电子', '传感器', 'P002', 'FLOW002', 
+ 300, 'PV2', 'TEST002', 'COMP002', '2023-10-05', 
+ '2023-10-20', 'LOT002', '工业控制', 'PCS', '1.0mm', 
+ 'DIP', '已完成', '精密传感器'),
+
+('WO003', '研发工单', '新产品试制', 'FWO003', 
+ 'BOM003', 'V3.0', '智能设备', '显示屏', 'P003', 'FLOW003', 
+ 200, 'PV3', 'TEST003', 'COMP003', '2023-10-10', 
+ NULL, 'LOT003', '家电', 'PCS', '0.7mm', 
+ 'COF', '待审核', '柔性显示屏');
