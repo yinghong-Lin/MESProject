@@ -80,7 +80,6 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "FrmMain";
             Text = "FrmMain";
-            Load += FrmMain_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

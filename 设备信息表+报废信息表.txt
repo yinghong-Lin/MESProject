@@ -1,4 +1,4 @@
-创建设备信息表
+-- 创建设备信息表
 CREATE TABLE `equipment` (
     `device_id` VARCHAR(50) NOT NULL COMMENT '设备号（主键）',
     `device_desc` VARCHAR(100) COMMENT '设备说明',
@@ -34,7 +34,7 @@ CREATE TABLE `equipment` (
     `work_order_desc` VARCHAR(255) COMMENT '工单说明',
     PRIMARY KEY (`device_id`)
 ) COMMENT='设备信息主表，整合设备、产品、工单相关字段';
-插入数据
+-- 插入数据
 INSERT INTO `equipment` (
     `device_id`, `device_desc`, `program_name`, `sub_program_name`, 
     `product_model`, `equipment_sequence`, `current_status`, `lock_status`, 
@@ -87,7 +87,7 @@ VALUES
  'COM-01', '封装', '0.15mm', '封装工单 - 产品D');
 
 
-创建报废信息表
+-- 创建报废信息表
 CREATE TABLE scrapped_info (
     ID INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
     type VARCHAR(20) NOT NULL COMMENT '类型',  

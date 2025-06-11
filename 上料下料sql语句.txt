@@ -1,0 +1,28 @@
+-- 创建新表
+CREATE TABLE `material` (
+    `物料号` VARCHAR(255) NOT NULL,
+    `物料描述` VARCHAR(255) NOT NULL,
+    `物料类型` VARCHAR(255) NOT NULL,
+    `详细类型` VARCHAR(255) NOT NULL,
+    `物料名` VARCHAR(255) NOT NULL,
+    `单位` VARCHAR(255) NOT NULL,
+    `物料组` VARCHAR(255) NOT NULL,
+    `数量` FLOAT NOT NULL,
+    `Calulate Y` VARCHAR(255) DEFAULT NULL,
+    `设备配套型` VARCHAR(255) DEFAULT NULL,
+    `供应商号` VARCHAR(255) DEFAULT NULL,
+    `供应商物料号` VARCHAR(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 插入数据
+INSERT INTO `material` (`物料号`, `物料描述`, `物料类型`, `详细类型`, `物料名`, `单位`, `物料组`, `数量`, `Calulate Y`, `设备配套型`, `供应商号`, `供应商物料号`) VALUES
+('1001-00001-043', '贴片电容0.1uF', 'Consumable', 'Cap', '贴片电容0.1uF', 'EA', 'Cap', 100.01, NULL, NULL, NULL, NULL),
+('1001-00001-044', '贴片电容0.1uF', 'Consumable', 'Cap', '贴片电容0.1uF', 'EA', 'Cap', 150.01, NULL, NULL, NULL, NULL),
+('1001-00001-046', '贴片电容4.7uF', 'Consumable', 'Cap', '贴片电容4.7uF', 'EA', 'Cap', 200.01, 'Y', NULL, NULL, NULL),
+('1001-00001-057', '贴片电容0.1uF', 'Consumable', 'Cap', '贴片电容0.1uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-065', '贴片电容3.2pF', 'Consumable', 'Cap', '贴片电容3.2pF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-084', '贴片电容3.3nF', 'Consumable', 'Cap', '贴片电容3.3nF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-109', '铝电解47uF', 'Consumable', 'Cap', '铝电解47uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-114', '贴片电容2.2uF', 'Consumable', 'Cap', '贴片电容2.2uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-126', '贴片电容(POSCAP)', 'Consumable', 'Cap', '贴片电容(POSCAP)', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
+('1001-00001-138', '铝电解100uF', 'Consumable', 'Cap', '铝电解100uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL);

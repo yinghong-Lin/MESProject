@@ -2,21 +2,23 @@
 using System.Windows.Forms; // 引入Windows Forms命名空间
 using System.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
 using MDM.UI.Admin; // 引入管理员相关的UI组件
 using MDM.UI.Factory; // 引入工厂相关的UI组件
-using MDM.UI.Process;
-using MDM.UI.Carr;
-using MDM.BLL.Users;
-using MDM.BLL.Equipment;
-using MDM.BLL.Process;
-using MDM.BLL.Carr;
-using MDM.Model.UserEntities;
+using MDM.BLL.Users; // 引入用户相关的业务逻辑层组件
+using MDM.BLL.Equipment; // 引入设备相关的业务逻辑层组件
+using MDM.Model.UserEntities; // 引入用户实体相关的模型层组件
 using MDM.DAL.Equipment;
+using System.Diagnostics;
+using MDM.BLL.Process;
 using MDM.DAL.Process;
-using MDM.DAL.Carr;
 using MDM.Model;
+using MDM.UI.Process;
 using MDM.UI.WorkOrders;
+using MDM.UI.Batch;
+using MDM.BLL.Carr;
+using MDM.DAL.Carr;
+using MDM.UI.Carr;
+using MDM.UI.Material;
 
 namespace MDM.UI.MainForms
 {
@@ -64,6 +66,9 @@ namespace MDM.UI.MainForms
             // 获取当前用户有权限的菜单列表
             List<Menu> menuList = _loginService.GetUserPermissionMenus(_currentUser.UserId, _currentFactoryId);
 
+            // 添加工单菜单系统
+            AddWorkOrderMenuSystem(menuList);
+
             if (menuList != null && menuList.Count > 0)
             {
                 // 步骤1：先找出所有顶级菜单（parent_menu_id=0的菜单）并自定义排序
@@ -87,6 +92,41 @@ namespace MDM.UI.MainForms
 
                     // 步骤3：递归查找并添加子菜单
                     AddChildMenuItems(topMenuItem, topMenu.MenuId, menuList);
+                }
+            }
+        }
+
+        // 添加工单菜单系统
+        private void AddWorkOrderMenuSystem(List<Menu> menuList)
+        {
+            // 添加工单顶级菜单（如果不存在）
+            if (!menuList.Any(m => m.MenuName == "工单" && m.ParentMenuId == 0))
+            {
+                menuList.Add(new Menu
+                {
+                    MenuId = -1000,
+                    MenuName = "工单",
+                    ParentMenuId = 0,
+                    FunctionId = null
+                });
+            }
+
+            // 获取工单菜单ID
+            var workOrderMenuId = menuList.First(m => m.MenuName == "工单" && m.ParentMenuId == 0).MenuId;
+
+            // 添加子菜单（如果不存在）
+            string[] subMenus = { "创建工单", "取消创建工单", "投工单" };
+            foreach (var menuName in subMenus)
+            {
+                if (!menuList.Any(m => m.MenuName == menuName && m.ParentMenuId == workOrderMenuId))
+                {
+                    menuList.Add(new Menu
+                    {
+                        MenuId = menuList.Min(m => m.MenuId) - 1, // 生成唯一负ID
+                        MenuName = menuName,
+                        ParentMenuId = workOrderMenuId,
+                        FunctionId = "c" // 设置为功能菜单
+                    });
                 }
             }
         }
@@ -227,6 +267,73 @@ namespace MDM.UI.MainForms
                         MessageBox.Show($"投工单窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+                case "主页面":
+                    try
+                    {
+                        Debug.WriteLine("正在打开主页面窗体...");
+                        childForm = new FrmMainPage();
+                        Debug.WriteLine("主页面窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"主页面窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"主页面窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+                case "创建批次":
+                    childForm = new FrmCreateBatch(_connectionString);
+                    break;
+                case "取消创建批次":
+                    childForm = new FrmCancelCreateBatch();
+                    break;
+                case "锁定批次":
+                    childForm = new FrmLockedBatch();
+                    break;
+                case "解锁批次":
+                    childForm = new FrmUnlockedBatch();
+                    break;
+                case "上料":
+                    try
+                    {
+                        Debug.WriteLine("正在打开上料窗体...");
+                        childForm = new FrmLoadMaterial(); // 假设存在FrmLoadMaterial窗体
+                        Debug.WriteLine("上料窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"上料窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"上料窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
+                case "下料":
+                    try
+                    {
+                        Debug.WriteLine("正在打开下料窗体...");
+                        childForm = new FrmUnloadMaterial(); // 假设存在FrmUnloadMaterial窗体
+                        Debug.WriteLine("下料窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"下料窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"下料窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
+                case "创建物料":
+                    try
+                    {
+                        Debug.WriteLine("正在打开创建物料窗体...");
+                        childForm = new FrmCreateMaterial(); // 假设存在FrmCreateMaterial窗体
+                        Debug.WriteLine("创建物料窗体已打开");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"创建物料窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"创建物料窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
 
             }
 
@@ -276,11 +383,6 @@ namespace MDM.UI.MainForms
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // 标签页选择变更事件处理
-        }
-
-        private void FrmMain_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
