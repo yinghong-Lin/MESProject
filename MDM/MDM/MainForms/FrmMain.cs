@@ -165,6 +165,25 @@ namespace MDM.UI.MainForms
                         MessageBox.Show($"创建工作站窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+                case "生产返修":
+                    try
+                    {
+                        Debug.WriteLine("正在创建生产维修窗体...");
+                        // 创建ReworkRepository实例，传入连接字符串
+                        var reworkRepository = new ReworkRepository(_connectionString);
+                        // 创建ReworkService实例，传入仓储
+                        var reworkService = new ReworkService(reworkRepository);
+                        // 创建生产维修窗体，传入服务
+                        childForm = new FrmRework(reworkService);
+                        Debug.WriteLine("生产维修窗体创建成功");
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"创建生产维修窗体时发生异常: {ex.Message}");
+                        MessageBox.Show($"创建生产维修窗体时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    break;
+
             }
 
             if (childForm != null)

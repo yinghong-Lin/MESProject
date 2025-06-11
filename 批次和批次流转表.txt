@@ -1,0 +1,69 @@
+-- 创建 Batch 表
+CREATE TABLE `batch` (
+    `batch_id` varchar(50) NOT NULL COMMENT '批次号',
+    `BatchType` varchar(50) NOT NULL COMMENT '批次类型',
+    `Unit` varchar(20) NOT NULL COMMENT '单位',
+    `DetailType` varchar(50) NOT NULL COMMENT '详细类型',
+    `BatchQty` int NOT NULL COMMENT '批次数量',
+    `SubProductQty` int NOT NULL COMMENT '子产品数量',
+    `WIPStatus` varchar(50) NOT NULL COMMENT '在制品状态',
+    `LockStatus` varchar(50) NOT NULL COMMENT '锁定状态',
+    `WorkOrderNo` varchar(50) NOT NULL COMMENT '工单号',
+    `ProductID` varchar(50) NOT NULL COMMENT '产品编号',
+    `flow_id` varchar(50) NOT NULL COMMENT '工艺流程号',
+    `flow_version` varchar(10) NOT NULL COMMENT '工艺流程版本',
+    `oper_id` varchar(100) NOT NULL COMMENT '工站号',
+    PRIMARY KEY (`batch_id`)
+);
+
+-- 创建 BatchFlow 表
+CREATE TABLE `batchflow` (
+    `batch_id` varchar(50) NOT NULL COMMENT '批次号',
+    `Qty` decimal(10,2) NOT NULL COMMENT '数量',
+    `GoodQty` decimal(10,2) NOT NULL COMMENT 'Good 数量',
+    `NGQty` decimal(10,2) NOT NULL COMMENT 'NG 数量',
+    `SubProductQty` decimal(10,2) NOT NULL COMMENT '子产品数量',
+    `BatchType` varchar(50) NOT NULL COMMENT '批次类型',
+    `Unit` varchar(20) NOT NULL COMMENT '单位',
+    `ProductID` varchar(50) NOT NULL COMMENT '产品编号',
+    `oper_id` varchar(100) NOT NULL COMMENT '工站号',
+    `flow_description` varchar(255) DEFAULT NULL COMMENT '描述',
+    `DetailStationType` varchar(50) NOT NULL COMMENT '详细工站类型',
+    `ProcessStatus` varchar(50) NOT NULL COMMENT '制程状态',
+    `EquipmentNo` varchar(50) NOT NULL COMMENT '设备号',
+    `EquipmentStatus` varchar(50) NOT NULL COMMENT '设备状态',
+    `LockStatus` varchar(50) NOT NULL COMMENT '锁定状态',
+    `ReworkStatus` varchar(50) NOT NULL COMMENT '返修状态',
+    `Location` varchar(50) NOT NULL COMMENT '位置',
+    `flow_id` varchar(50) NOT NULL COMMENT '工艺流程号',
+    `ProcessPackageVersion` varchar(50) NOT NULL COMMENT '工艺包版本',
+    `flow_version` varchar(10) NOT NULL COMMENT '工艺流程版本',
+    `StationVersion` varchar(50) NOT NULL COMMENT '工站版本',
+    `Grade` varchar(50) NOT NULL COMMENT '等级',
+    `HotType` varchar(50) NOT NULL COMMENT 'Hot 类型',
+    `ProductionStartDate` datetime NOT NULL COMMENT '投产时间',
+    `OutboundDate` datetime DEFAULT NULL COMMENT '出站时间',
+    `StationChangeDate` datetime DEFAULT NULL COMMENT '工站变更时间',
+    `ParentBatch` varchar(50) NOT NULL COMMENT '母批',
+    `SubUnit` varchar(20) NOT NULL COMMENT '子单位',
+    `BOMNo` varchar(50) NOT NULL COMMENT '物料清单编号',
+    `BOMVersion` varchar(10) NOT NULL COMMENT '物料清单版本',
+    `UsedSubBatch` varchar(50) DEFAULT NULL COMMENT '使用子批次',
+    `CarrierNo` varchar(50) NOT NULL COMMENT '载具号',
+    `StationType` varchar(50) NOT NULL COMMENT '工站类型',
+    PRIMARY KEY (`batch_id`)
+);
+
+-- 插入批次表（Batch）数据
+INSERT INTO `batch` (`batch_id`, `BatchType`, `Unit`, `DetailType`, `BatchQty`, `SubProductQty`, `WIPStatus`, `LockStatus`, `WorkOrderNo`, `ProductID`, `flow_id`, `flow_version`, `oper_id`)
+VALUES 
+('B001', 'TypeA', 'pcs', 'Detail1', 100, 20, 'InProcess', 'Unlocked', 'WO001', 'P001', 'FLOW001', 'V1.0', 'OP001'),
+('B002', 'TypeB', 'pcs', 'Detail2', 150, 30, 'Completed', 'Locked', 'WO002', 'P002', 'FLOW002', 'V2.0', 'OP002'),
+('B003', 'TypeA', 'pcs', 'Detail1', 200, 40, 'Pending', 'Unlocked', 'WO003', 'P003', 'FLOW003', 'V1.0', 'OP003');
+
+-- 插入批次流转表（BatchFlow）数据
+INSERT INTO `batchflow` (`batch_id`, `Qty`, `GoodQty`, `NGQty`, `SubProductQty`, `BatchType`, `Unit`, `ProductID`, `oper_id`, `flow_description`, `DetailStationType`, `ProcessStatus`, `EquipmentNo`, `EquipmentStatus`, `LockStatus`, `ReworkStatus`, `Location`, `flow_id`, `ProcessPackageVersion`, `flow_version`, `StationVersion`, `Grade`, `HotType`, `ProductionStartDate`, `OutboundDate`, `StationChangeDate`, `ParentBatch`, `SubUnit`, `BOMNo`, `BOMVersion`, `UsedSubBatch`, `CarrierNo`, `StationType`)
+VALUES 
+('B001', 100.00, 95.00, 5.00, 20.00, 'TypeA', 'pcs', 'P001', 'OP001', 'Initial production', 'Type1', 'InProcess', 'EQ001', 'Active', 'Unlocked', 'None', 'Location1', 'FLOW001', 'PKG001', 'V1.0', 'V1', 'A', 'Hot', '2023-10-01 08:00:00', NULL, NULL, 'PB001', 'SU001', 'BOM001', 'V1', NULL, 'CR001', 'Type1'),
+('B002', 150.00, 140.00, 10.00, 30.00, 'TypeB', 'pcs', 'P002', 'OP002', 'Second station', 'Type2', 'Completed', 'EQ002', 'Active', 'Locked', 'Reworked', 'Location2', 'FLOW002', 'PKG002', 'V2.0', 'V2', 'B', 'Normal', '2023-10-02 08:00:00', '2023-10-02 16:00:00', NULL, 'PB002', 'SU002', 'BOM002', 'V2', NULL, 'CR002', 'Type2'),
+('B003', 200.00, 190.00, 10.00, 40.00, 'TypeA', 'pcs', 'P003', 'OP003', 'Third station', 'Type3', 'Pending', 'EQ003', 'Inactive', 'Unlocked', 'None', 'Location3', 'FLOW003', 'PKG003', 'V1.0', 'V3', 'A', 'Hot', '2023-10-03 08:00:00', NULL, '2023-10-03 12:00:00', 'PB003', 'SU003', 'BOM003', 'V3', NULL, 'CR003', 'Type3');
