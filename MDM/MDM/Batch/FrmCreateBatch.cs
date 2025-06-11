@@ -22,7 +22,7 @@ namespace MDM.UI.Batch
         // 当前选中的工单
         private WorkOrderList _selectedWorkOrder;
         // 在类中添加连接字符串字段
-        private readonly string _connectionString = "Server=localhost;Database=mesproject;Uid=root;Pwd=Lmi503606707;Port=3305;";
+        private readonly string _connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
         // 在类中添加字段
         private bool _isBatchSelected = false;
 
@@ -108,7 +108,7 @@ namespace MDM.UI.Batch
                 ProductId = _selectedWorkOrder.ProductId, // 产品编号
                 ProcessFlowNo = _selectedWorkOrder.ProcessFlow, // 工艺流程号
                 ProcessFlowVersion = "1.0", // 工艺流程版本
-                StationNo = "START" // 起始工站
+                OperId = "START" // 起始工站
             };
 
             // 添加到待创建批次列表

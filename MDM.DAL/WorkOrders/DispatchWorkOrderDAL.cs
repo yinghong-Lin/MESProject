@@ -7,7 +7,7 @@ namespace MDM.DAL.WorkOrders
 {
     public class DispatchWorkOrderDAL
     {
-        private string connectionString = "server=localhost;database=mdm_db;uid=root;password=123456;";
+        private string connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
 
         public List<WorkOrder> GetWorkOrderHeaders()
         {

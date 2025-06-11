@@ -7,7 +7,7 @@ namespace MDM.UI.Material
 {
     public partial class FrmLoadMaterial : Form
     {
-        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=123456;Port=3306;";
+        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
         private string query = "SELECT * FROM MaterialInfo";
 
         public FrmLoadMaterial()

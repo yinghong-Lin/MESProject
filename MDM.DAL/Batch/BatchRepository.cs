@@ -84,8 +84,8 @@ namespace MDM.DAL.Batch
                 {
                     connection.Open();
                     using (var command = new MySqlCommand(
-                        @"INSERT INTO batches (batch_id, batch_type, unit, detail_type, batch_qty, sub_product_qty, wip_status, lock_status, work_order_no, product_id, process_flow_no, process_flow_version, station_no)
-                                 VALUES (@batchId, @batchType, @unit, @detailType, @batchQty, @subProductQty, @wipStatus, @lockStatus, @workOrderNo, @productId, @processFlowNo, @processFlowVersion, @stationNo)", connection))
+                        @"INSERT INTO batch (batch_id, batch_type, unit, detail_type, batch_qty, sub_product_qty, wip_status, lock_status, work_order_no, product_id, process_flow_no, process_flow_version, oper_id)
+                                 VALUES (@batchId, @batchType, @unit, @detailType, @batchQty, @subProductQty, @wipStatus, @lockStatus, @workOrderNo, @productId, @processFlowNo, @processFlowVersion, @operId)", connection))
                     {
                         // 参数设置...
                         return command.ExecuteNonQuery() > 0;
@@ -97,49 +97,6 @@ namespace MDM.DAL.Batch
                 // 记录完整错误信息
                 Console.WriteLine($"保存批次失败: {ex.ToString()}");
                 throw; // 重新抛出原始异常
-            }
-        }
-
-        // 新增批量保存方法
-        public bool SaveBatches(List<Model.BatchEntities.Batch> batches)
-        {
-            using (var connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    try
-                    {
-                        foreach (var batch in batches)
-                        {
-                            using (var command = new MySqlCommand(
-                                @"INSERT INTO batches (batch_id, batch_type, unit, detail_type, batch_qty, sub_product_qty, wip_status, lock_status, work_order_no, product_id, process_flow_no, process_flow_version, station_no)
-                                 VALUES (@batchId, @batchType, @unit, @detailType, @batchQty, @subProductQty, @wipStatus, @lockStatus, @workOrderNo, @productId, @processFlowNo, @processFlowVersion, @stationNo)", connection, transaction))
-                            {
-                                command.Parameters.AddWithValue("@batchId", batch.BatchId);
-                                command.Parameters.AddWithValue("@batchType", batch.BatchType);
-                                command.Parameters.AddWithValue("@unit", batch.Unit);
-                                command.Parameters.AddWithValue("@detailType", batch.DetailType);
-                                command.Parameters.AddWithValue("@batchQty", batch.BatchQty);
-                                command.Parameters.AddWithValue("@subProductQty", batch.SubProductQty);
-                                command.Parameters.AddWithValue("@wipStatus", batch.WIPStatus);
-                                command.Parameters.AddWithValue("@lockStatus", batch.LockStatus);
-                                command.Parameters.AddWithValue("@workOrderNo", batch.WorkOrderNo);
-                                command.Parameters.AddWithValue("@productId", batch.ProductId);
-                                command.Parameters.AddWithValue("@processFlowNo", batch.ProcessFlowNo);
-                                command.Parameters.AddWithValue("@processFlowVersion", batch.ProcessFlowVersion);
-                                command.Parameters.AddWithValue("@stationNo", batch.StationNo);
-                            }
-                        }
-                        transaction.Commit();
-                        return true;
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
             }
         }
 
@@ -175,7 +132,7 @@ namespace MDM.DAL.Batch
                                     ProductId = reader["ProductId"].ToString(),
                                     ProcessFlowNo = reader["ProcessFlowNo"].ToString(),
                                     ProcessFlowVersion = reader["ProcessFlowVersion"].ToString(),
-                                    StationNo = reader["StationNo"].ToString(),
+                                    OperId = reader["oper_id"].ToString(),
                                     CreateTime = reader["CreateTime"] != DBNull.Value ? Convert.ToDateTime(reader["CreateTime"]) : DateTime.MinValue
                                 });
                             }
@@ -201,7 +158,9 @@ namespace MDM.DAL.Batch
                 {
                     _connection.Open();
 
-                    string sql = @"SELECT * FROM batch WHERE batch_id LIKE @BatchId";
+                    string sql = @"SELECT * FROM batch 
+                         WHERE batch_id LIKE @BatchId 
+                         ORDER BY batch_id";
 
                     using (var command = new MySqlCommand(sql, _connection))
                     {
@@ -213,6 +172,7 @@ namespace MDM.DAL.Batch
                             {
                                 batches.Add(new MDM.Model.BatchEntities.Batch
                                 {
+                                    // 保持原有映射逻辑
                                     BatchId = reader["batch_id"].ToString(),
                                     BatchType = reader["BatchType"].ToString(),
                                     Unit = reader["Unit"].ToString(),
@@ -225,8 +185,9 @@ namespace MDM.DAL.Batch
                                     ProductId = reader["ProductId"].ToString(),
                                     ProcessFlowNo = reader["ProcessFlowNo"].ToString(),
                                     ProcessFlowVersion = reader["ProcessFlowVersion"].ToString(),
-                                    StationNo = reader["StationNo"].ToString(),
-                                    CreateTime=reader["CreateTime"] != DBNull.Value ? Convert.ToDateTime(reader["CreateTime"]) : DateTime.MinValue
+                                    OperId = reader["oper_id"].ToString(),
+                                    CreateTime = reader["CreateTime"] != DBNull.Value ?
+                                        Convert.ToDateTime(reader["CreateTime"]) : DateTime.MinValue
                                 });
                             }
                         }
@@ -271,7 +232,7 @@ namespace MDM.DAL.Batch
                                     BatchType = reader["BatchType"].ToString(),
                                     Unit = reader["Unit"].ToString(),
                                     ProductId = reader["ProductID"].ToString(),
-                                    StationNo = reader["StationNo"].ToString(),
+                                    OperId = reader["oper_id"].ToString(),
                                     Description = reader["Description"].ToString(),
                                     DetailStationType = reader["DetailStationType"].ToString(),
                                     ProcessStatus = reader["ProcessStatus"].ToString(),
@@ -301,7 +262,7 @@ namespace MDM.DAL.Batch
                                     OnProductState = reader["on_product_state"].ToString(),
                                     RepairState = reader["repair_state"].ToString(),
                                     FlowDescription = reader["flow_description"].ToString(),
-                                    DestoryNum = Convert.ToInt32(reader["destory_num"]),
+                                    DestroyNum = Convert.ToInt32(reader["destroy_num"]),
                                     FlowState = reader["flow_state"].ToString(),
                                     ProcessName = reader["process_name"].ToString(),
                                     DetainCodeGroup=reader["detain_code_group"].ToString()

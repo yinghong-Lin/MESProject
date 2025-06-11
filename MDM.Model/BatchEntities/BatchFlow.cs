@@ -16,7 +16,7 @@ namespace MDM.Model.BatchEntities
         public string? BatchType { get; set; } // 批次类型
         public string? Unit { get; set; } // 单位
         public string? ProductId { get; set; } // 产品编号
-        public string? StationNo { get; set; } // 工站号
+        public string? OperId { get; set; } // 工站号
         public string? Description { get; set; } // 描述
         public string? DetailStationType { get; set; } // 详细工站类型
         public string? ProcessStatus { get; set; } // 制程状态
@@ -46,7 +46,7 @@ namespace MDM.Model.BatchEntities
         public string? OnProductState { get; set; } // 在制品状态
         public string? RepairState { get; set; } // 维修状态
         public string? FlowDescription { get; set; } // 工艺流程描述
-        public int DestoryNum { get; set; } // 报废数量
+        public int DestroyNum { get; set; } // 报废数量
         public string? FlowState { get; set; } // 工艺状态
         public string? ProcessName { get; set; } // 程序名
         public string? LockCode {  get; set; }//锁定代码

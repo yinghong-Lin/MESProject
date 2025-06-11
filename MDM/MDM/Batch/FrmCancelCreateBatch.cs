@@ -15,7 +15,7 @@ namespace MDM.UI.Batch
 {
     public partial class FrmCancelCreateBatch : Form
     {
-        private readonly string _connectionString = "Server=localhost;Database=mesproject;Uid=root;Pwd=Lmi503606707;Port=3305;";
+        private readonly string _connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
 
         public FrmCancelCreateBatch()
         {
@@ -368,7 +368,7 @@ namespace MDM.UI.Batch
             //添加工站号列
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
             {
-                DataPropertyName = "StationNo",
+                DataPropertyName = "OperId",
                 HeaderText = "工站号",
                 Width = 100
             });
@@ -401,54 +401,46 @@ namespace MDM.UI.Batch
         private void button1_Click(object sender, EventArgs e)
         {
             string batchId = textBox1.Text.Trim();
-
-            // 获取日期范围
             DateTime startDate = dateTimePicker1.Value.Date;
-            DateTime endDate = dateTimePicker2.Value.Date;
+            DateTime endDate = dateTimePicker2.Value.Date.AddDays(1).AddSeconds(-1); // 包含当天
 
-            // 如果输入为空，则查询全部批次信息
-            if (string.IsNullOrEmpty(batchId))
+            try
             {
                 using (var batchService = new BatchService(_connectionString))
                 {
-                    List<MDM.Model.BatchEntities.Batch> batches = batchService.GetAllBatches();
-                    dataGridView1.DataSource = batches;
-                }
-            }
-            else
-            {
-                try
-                {
-                    using (var batchService = new BatchService(_connectionString))
+                    List<MDM.Model.BatchEntities.Batch> batches;
+
+                    if (string.IsNullOrEmpty(batchId))
                     {
-                        List<MDM.Model.BatchEntities.Batch> batches;
+                        // 只按日期查询
+                        batches = batchService.GetAllBatches()
+                            .Where(b => b.CreateTime >= startDate && b.CreateTime <= endDate)
+                            .ToList();
+                    }
+                    else
+                    {
+                        // 按批次号和日期查询
+                        batches = batchService.GetBatchesByBatchId(batchId)
+                            .Where(b => b.CreateTime >= startDate && b.CreateTime <= endDate)
+                            .ToList();
+                    }
 
-                        if (string.IsNullOrEmpty(batchId))
-                        {
-                            // 查询全部批次信息，并筛选创建时间在指定范围内的批次
-                            batches = batchService.GetAllBatches().Where(b => b.CreateTime >= startDate && b.CreateTime <= endDate).ToList();
-                        }
-                        else
-                        {
-                            // 查询指定批次号的批次信息，并筛选创建时间在指定范围内的批次
-                            batches = batchService.GetBatchesByBatchId(batchId).Where(b => b.CreateTime >= startDate && b.CreateTime <= endDate).ToList();
-                        }
-
-                        if (batches.Count == 0)
-                        {
-                            MessageBox.Show("没有找到匹配的批次信息");
-                            dataGridView1.DataSource = new List<MDM.Model.BatchEntities.Batch>();
-                            return;
-                        }
+                    if (batches.Count == 0)
+                    {
+                        MessageBox.Show("没有找到匹配的批次信息");
+                        dataGridView1.DataSource = new List<MDM.Model.BatchEntities.Batch>();
+                    }
+                    else
+                    {
                         dataGridView1.DataSource = batches;
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"查询批次信息时出错: {ex.Message}");
-                }
             }
-            // 更新textbox2和textbox3的值
+            catch (Exception ex)
+            {
+                MessageBox.Show($"查询批次信息时出错: {ex.Message}");
+            }
+
             UpdateTextBox2AndTextBox3();
         }
 

@@ -384,5 +384,10 @@ namespace MDM.UI.MainForms
         {
             // 标签页选择变更事件处理
         }
+
+        private void FrmMain_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

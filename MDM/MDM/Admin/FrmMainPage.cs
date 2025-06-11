@@ -24,7 +24,7 @@ namespace MDM.UI.Admin
         private ReworkService reworkService;
 
         // 数据库连接字符串
-        private readonly string connectionString = "server=localhost;database=mdm_db;uid=root;password=123456;";
+        private readonly string connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
 
         // 当前选中的数据
         private DataTable currentWorkOrderData;

@@ -20,7 +20,7 @@ namespace MDM.Model.BatchEntities
         public string? ProductId { get; set; } // 产品编号
         public string? ProcessFlowNo { get; set; } // 工艺流程号
         public string? ProcessFlowVersion { get; set; } // 工艺流程版本
-        public string? StationNo { get; set; } // 工站号
+        public string? OperId { get; set; } // 工站号
         public DateTime? CreateTime { get; set; }//创建时间
     }
 }

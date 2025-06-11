@@ -27,7 +27,7 @@ namespace MDM.UI.Batch
         public FrmLockedBatch()
         {
             InitializeComponent();
-            _batchService = new BatchService("Server=localhost;Database=mesproject;Uid=root;Pwd=Lmi503606707;Port=3305;");
+            _batchService = new BatchService("Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;");
             // 初始化下拉框
             InitializeComboBoxes();
 
@@ -493,7 +493,7 @@ namespace MDM.UI.Batch
             textBox13.Text = batchFlow.ProcessFlowNo;
             textBox15.Text = batchFlow.ProcessFlowVersion;
             textBox16.Text = batchFlow.FlowDescription;
-            textBox14.Text = batchFlow.DestoryNum.ToString();
+            textBox14.Text = batchFlow.DestroyNum.ToString();
             textBox27.Text = batchFlow.SubProductQty.ToString();
             textBox17.Text = batchFlow.FlowState;
             textBox18.Text = batchFlow.ReworkStatus;

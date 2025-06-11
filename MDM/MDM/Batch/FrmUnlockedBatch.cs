@@ -15,7 +15,7 @@ namespace MDM.UI.Batch
         public FrmUnlockedBatch()
         {
             InitializeComponent();
-            _batchService = new BatchService("Server=localhost;Database=mesproject;Uid=root;Pwd=Lmi503606707;Port=3305;");
+            _batchService = new BatchService("Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;");
 
             // 初始化DataGridView列
             InitializeDataGridViewColumns();
@@ -60,7 +60,7 @@ namespace MDM.UI.Batch
             textBox11.Text = batchFlow.OnProductState; // 在制品状态
             textBox12.Text = batchFlow.RepairState; // 维修状态
             textBox13.Text = batchFlow.ProcessFlowNo; // 工艺流程
-            textBox14.Text = batchFlow.DestoryNum.ToString();//报废数量
+            textBox14.Text = batchFlow.DestroyNum.ToString();//报废数量
 
             // 其他信息
             textBox15.Text = batchFlow.ProcessFlowVersion; // 工艺流程版本
@@ -69,7 +69,7 @@ namespace MDM.UI.Batch
             textBox18.Text = batchFlow.ReworkStatus; // 返修状态
             textBox19.Text = batchFlow.Description; // 工站描述
             textBox20.Text = batchFlow.StationType; // 工站类型
-            textBox21.Text = batchFlow.StationNo; // 工站
+            textBox21.Text = batchFlow.OperId; // 工站
             textBox22.Text = batchFlow.EquipmentNo; // 设备号
             textBox23.Text = batchFlow.ProcessName; // 程序名
             textBox24.Text = batchFlow.ParentBatch; // 父批次号
@@ -79,7 +79,7 @@ namespace MDM.UI.Batch
             textBox36.Text = batchFlow.NGQty.ToString(); // NG数量
 
             // 报废数量/子数量
-            textBox14.Text = batchFlow.DestoryNum.ToString(); // 报废数量
+            textBox14.Text = batchFlow.DestroyNum.ToString(); // 报废数量
             textBox37.Text = batchFlow.SubProductQty.ToString(); // 子数量
 
             // 锁定相关信息

@@ -13,7 +13,7 @@ namespace MDM.UI.Factory
 {
     public partial class Frm_Factory : Form
     {
-        private string connectionString = "server=localhost;database=mdm_db;userid=root;password=123456";
+        private string connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
 
         public Frm_Factory()
         {

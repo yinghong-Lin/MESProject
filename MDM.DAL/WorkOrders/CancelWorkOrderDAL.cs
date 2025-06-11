@@ -6,7 +6,7 @@ namespace MDM.DAL
 {
     public class CancelWorkOrderDAL
     {
-        private string connectionString = "server=localhost;user=root;password=123456;database=mdm_db"; // 替换为你的MySQL连接字符串
+        private string connectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;"; // 替换为你的MySQL连接字符串
 
         public DataTable GetWorkOrderList()
         {

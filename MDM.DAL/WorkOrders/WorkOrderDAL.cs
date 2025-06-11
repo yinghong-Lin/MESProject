@@ -5,7 +5,7 @@ namespace MDM.DAL
 {
     public class WorkOrderDAL
     {
-        private readonly string _connString = "Server=localhost;Database=mdm_db;User ID=root;Password=123456;";
+        private readonly string _connString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=Lmi503606707;Port=3305;";
 
         public DataTable GetDistinctWorkOrderTypes()
         {

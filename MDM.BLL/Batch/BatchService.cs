@@ -62,11 +62,11 @@ namespace MDM.BLL.Batch
                             string sql = @"INSERT INTO batch
                                     (batch_id, BatchType, Unit, DetailType, BatchQty, 
                                     SubProductQty, WIPStatus, LockStatus, WorkOrderNo, 
-                                    ProductId, ProcessFlowNo, ProcessFlowVersion, StationNo, CreateTime)
+                                    ProductId, ProcessFlowNo, ProcessFlowVersion, oper_id, CreateTime)
                                     VALUES 
                                     (@BatchId, @BatchType, @Unit, @DetailType, @BatchQty, 
                                     @SubProductQty, @WIPStatus, @LockStatus, @WorkOrderNo, 
-                                    @ProductId, @ProcessFlowNo, @ProcessFlowVersion, @StationNo, @CreateTime)";
+                                    @ProductId, @ProcessFlowNo, @ProcessFlowVersion, @OperId,@CreateTime)";
 
                             using (var command = new MySqlCommand(sql, connection, transaction))
                             {
@@ -83,7 +83,7 @@ namespace MDM.BLL.Batch
                                 command.Parameters.Add("@ProductId", MySqlDbType.VarChar).Value = batch.ProductId ?? (object)DBNull.Value;
                                 command.Parameters.Add("@ProcessFlowNo", MySqlDbType.VarChar).Value = batch.ProcessFlowNo ?? (object)DBNull.Value;
                                 command.Parameters.Add("@ProcessFlowVersion", MySqlDbType.VarChar).Value = batch.ProcessFlowVersion ?? (object)DBNull.Value;
-                                command.Parameters.Add("@StationNo", MySqlDbType.VarChar).Value = batch.StationNo ?? (object)DBNull.Value;
+                                command.Parameters.Add("@OperId", MySqlDbType.VarChar).Value = batch.OperId ?? (object)DBNull.Value;
                                 command.Parameters.Add("@CreateTime", MySqlDbType.DateTime).Value = batch.CreateTime;
 
                                 int result = command.ExecuteNonQuery();
