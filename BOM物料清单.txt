@@ -1,0 +1,32 @@
+-- 创建物料清单表
+CREATE TABLE bomitemlist (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    MaterialNo VARCHAR(50) NOT NULL,
+    MaterialName VARCHAR(100) NOT NULL,
+    MaterialType VARCHAR(50),
+    DetailedMaterialType VARCHAR(100),
+    ConsumptionQuantity INT NOT NULL,
+    MaterialUnit VARCHAR(20) NOT NULL,
+    BomNo VARCHAR(50) NOT NULL,
+    MaterialBatchQuantity INT NOT NULL
+);
+-- 插入数据
+INSERT INTO bomitemlist (
+    MaterialNo,
+    MaterialName,
+    MaterialType,
+    DetailedMaterialType,
+    ConsumptionQuantity,
+    MaterialUnit,
+    BomNo,
+    MaterialBatchQuantity
+) VALUES (
+    'M001',
+    '螺丝',
+    '五金件',
+    '小螺丝',
+    100,
+    '个',
+    'BOM001',
+    500
+);

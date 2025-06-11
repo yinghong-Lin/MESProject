@@ -1,3 +1,10 @@
+-- 关闭主键检查
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 删除原有表（如果存在）
+DROP TABLE IF EXISTS batch;
+DROP TABLE IF EXISTS batchflow;
+
 -- 创建 Batch 表
 CREATE TABLE `batch` (
     `batch_id` varchar(50) NOT NULL COMMENT '批次号',
@@ -10,9 +17,37 @@ CREATE TABLE `batch` (
     `LockStatus` varchar(50) NOT NULL COMMENT '锁定状态',
     `WorkOrderNo` varchar(50) NOT NULL COMMENT '工单号',
     `ProductID` varchar(50) NOT NULL COMMENT '产品编号',
-    `flow_id` varchar(50) NOT NULL COMMENT '工艺流程号',
-    `flow_version` varchar(10) NOT NULL COMMENT '工艺流程版本',
+    `ProcessFlowNo` varchar(50) NOT NULL COMMENT '工艺流程号',
+    `ProcessFlowVersion` varchar(10) NOT NULL COMMENT '工艺流程版本',
     `oper_id` varchar(100) NOT NULL COMMENT '工站号',
+    `CreateTime` datetime NULL COMMENT '创建时间'
+    PRIMARY KEY (`batch_id`)
+);
+
+-- 创建 BatchFlow 表
+-- 关闭主键检查
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 删除原有表（如果存在）
+DROP TABLE IF EXISTS batch;
+DROP TABLE IF EXISTS batchflow;
+
+-- 创建 Batch 表
+CREATE TABLE `batch` (
+    `batch_id` varchar(50) NOT NULL COMMENT '批次号',
+    `BatchType` varchar(50) NOT NULL COMMENT '批次类型',
+    `Unit` varchar(20) NOT NULL COMMENT '单位',
+    `DetailType` varchar(50) NOT NULL COMMENT '详细类型',
+    `BatchQty` int NOT NULL COMMENT '批次数量',
+    `SubProductQty` int NOT NULL COMMENT '子产品数量',
+    `WIPStatus` varchar(50) NOT NULL COMMENT '在制品状态',
+    `LockStatus` varchar(50) NOT NULL COMMENT '锁定状态',
+    `WorkOrderNo` varchar(50) NOT NULL COMMENT '工单号',
+    `ProductID` varchar(50) NOT NULL COMMENT '产品编号',
+    `ProcessFlowNo` varchar(50) NOT NULL COMMENT '工艺流程号',
+    `ProcessFlowVersion` varchar(10) NOT NULL COMMENT '工艺流程版本',
+    `oper_id` varchar(100) NOT NULL COMMENT '工站号',
+	CreateTime DATETIME DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`batch_id`)
 );
 
@@ -27,7 +62,7 @@ CREATE TABLE `batchflow` (
     `Unit` varchar(20) NOT NULL COMMENT '单位',
     `ProductID` varchar(50) NOT NULL COMMENT '产品编号',
     `oper_id` varchar(100) NOT NULL COMMENT '工站号',
-    `flow_description` varchar(255) DEFAULT NULL COMMENT '描述',
+    `Description` varchar(255) DEFAULT NULL COMMENT '描述',
     `DetailStationType` varchar(50) NOT NULL COMMENT '详细工站类型',
     `ProcessStatus` varchar(50) NOT NULL COMMENT '制程状态',
     `EquipmentNo` varchar(50) NOT NULL COMMENT '设备号',
@@ -35,9 +70,9 @@ CREATE TABLE `batchflow` (
     `LockStatus` varchar(50) NOT NULL COMMENT '锁定状态',
     `ReworkStatus` varchar(50) NOT NULL COMMENT '返修状态',
     `Location` varchar(50) NOT NULL COMMENT '位置',
-    `flow_id` varchar(50) NOT NULL COMMENT '工艺流程号',
+    `ProcessFlowNo` varchar(50) NOT NULL COMMENT '工艺流程号',
     `ProcessPackageVersion` varchar(50) NOT NULL COMMENT '工艺包版本',
-    `flow_version` varchar(10) NOT NULL COMMENT '工艺流程版本',
+    `ProcessFlowVersion` varchar(10) NOT NULL COMMENT '工艺流程版本',
     `StationVersion` varchar(50) NOT NULL COMMENT '工站版本',
     `Grade` varchar(50) NOT NULL COMMENT '等级',
     `HotType` varchar(50) NOT NULL COMMENT 'Hot 类型',
@@ -51,19 +86,32 @@ CREATE TABLE `batchflow` (
     `UsedSubBatch` varchar(50) DEFAULT NULL COMMENT '使用子批次',
     `CarrierNo` varchar(50) NOT NULL COMMENT '载具号',
     `StationType` varchar(50) NOT NULL COMMENT '工站类型',
-    PRIMARY KEY (`batch_id`)
+detail_type VARCHAR(50) DEFAULT NULL COMMENT '详细类型',
+    work_order_id VARCHAR(20) DEFAULT NULL COMMENT '工单号',
+    on_product_state VARCHAR(50) DEFAULT NULL COMMENT '在制品状态',
+    repair_state VARCHAR(20) DEFAULT NULL COMMENT '维修状态',
+    flow_description VARCHAR(20) DEFAULT NULL COMMENT '工艺流程描述',
+    destory_num INT NULL COMMENT '报废数量',
+    flow_state VARCHAR(20) DEFAULT NULL COMMENT '工艺状态',
+    process_name VARCHAR(20) DEFAULT NULL COMMENT '程序名',
+    detain_code_group VARCHAR(50) DEFAULT NULL COMMENT '滞留代码组别',
+    PRIMARY KEY (`batch_id`),
+	FOREIGN KEY (CarrierNo) REFERENCES carriers(carrier_no)  -- 关联载具表
 );
-
 -- 插入批次表（Batch）数据
-INSERT INTO `batch` (`batch_id`, `BatchType`, `Unit`, `DetailType`, `BatchQty`, `SubProductQty`, `WIPStatus`, `LockStatus`, `WorkOrderNo`, `ProductID`, `flow_id`, `flow_version`, `oper_id`)
+INSERT INTO `batch` (`batch_id`, `BatchType`, `Unit`, `DetailType`, `BatchQty`, `SubProductQty`, `WIPStatus`, `LockStatus`, `WorkOrderNo`, `ProductID`, `ProcessFlowNo`, `ProcessFlowVersion`, `oper_id`)
 VALUES 
 ('B001', 'TypeA', 'pcs', 'Detail1', 100, 20, 'InProcess', 'Unlocked', 'WO001', 'P001', 'FLOW001', 'V1.0', 'OP001'),
 ('B002', 'TypeB', 'pcs', 'Detail2', 150, 30, 'Completed', 'Locked', 'WO002', 'P002', 'FLOW002', 'V2.0', 'OP002'),
 ('B003', 'TypeA', 'pcs', 'Detail1', 200, 40, 'Pending', 'Unlocked', 'WO003', 'P003', 'FLOW003', 'V1.0', 'OP003');
 
 -- 插入批次流转表（BatchFlow）数据
-INSERT INTO `batchflow` (`batch_id`, `Qty`, `GoodQty`, `NGQty`, `SubProductQty`, `BatchType`, `Unit`, `ProductID`, `oper_id`, `flow_description`, `DetailStationType`, `ProcessStatus`, `EquipmentNo`, `EquipmentStatus`, `LockStatus`, `ReworkStatus`, `Location`, `flow_id`, `ProcessPackageVersion`, `flow_version`, `StationVersion`, `Grade`, `HotType`, `ProductionStartDate`, `OutboundDate`, `StationChangeDate`, `ParentBatch`, `SubUnit`, `BOMNo`, `BOMVersion`, `UsedSubBatch`, `CarrierNo`, `StationType`)
+INSERT INTO `batchflow` (`batch_id`, `Qty`, `GoodQty`, `NGQty`, `SubProductQty`, `BatchType`, `Unit`, `ProductID`, `oper_id`, `Description`, `DetailStationType`, `ProcessStatus`, `EquipmentNo`, `EquipmentStatus`, `LockStatus`, `ReworkStatus`, `Location`, `ProcessFlowNo`, `ProcessPackageVersion`, `ProcessFlowVersion`, `StationVersion`, `Grade`, `HotType`, `ProductionStartDate`, `OutboundDate`, `StationChangeDate`, `ParentBatch`, `SubUnit`, `BOMNo`, `BOMVersion`, `UsedSubBatch`, `CarrierNo`, `StationType`,`detail_type`,`work_order_id`,`on_product_state`,`repair_state`,`flow_description`,`destory_num`,`flow_state`,`process_name`,`detain_code_group`)
 VALUES 
-('B001', 100.00, 95.00, 5.00, 20.00, 'TypeA', 'pcs', 'P001', 'OP001', 'Initial production', 'Type1', 'InProcess', 'EQ001', 'Active', 'Unlocked', 'None', 'Location1', 'FLOW001', 'PKG001', 'V1.0', 'V1', 'A', 'Hot', '2023-10-01 08:00:00', NULL, NULL, 'PB001', 'SU001', 'BOM001', 'V1', NULL, 'CR001', 'Type1'),
-('B002', 150.00, 140.00, 10.00, 30.00, 'TypeB', 'pcs', 'P002', 'OP002', 'Second station', 'Type2', 'Completed', 'EQ002', 'Active', 'Locked', 'Reworked', 'Location2', 'FLOW002', 'PKG002', 'V2.0', 'V2', 'B', 'Normal', '2023-10-02 08:00:00', '2023-10-02 16:00:00', NULL, 'PB002', 'SU002', 'BOM002', 'V2', NULL, 'CR002', 'Type2'),
-('B003', 200.00, 190.00, 10.00, 40.00, 'TypeA', 'pcs', 'P003', 'OP003', 'Third station', 'Type3', 'Pending', 'EQ003', 'Inactive', 'Unlocked', 'None', 'Location3', 'FLOW003', 'PKG003', 'V1.0', 'V3', 'A', 'Hot', '2023-10-03 08:00:00', NULL, '2023-10-03 12:00:00', 'PB003', 'SU003', 'BOM003', 'V3', NULL, 'CR003', 'Type3');
+('B001', 100.00, 95.00, 5.00, 20.00, 'TypeA', 'pcs', 'P001', 'OP001', 'Initial production', 'Type1', 'InProcess', 'EQ001', 'Active', 'Unlocked', 'None', 'Location1', 'FLOW001', 'PKG001', 'V1.0', 'V1', 'A', 'Hot', '2023-10-01 08:00:00', NULL, NULL, 'PB001', 'SU001', 'BOM001', 'V1', NULL, 'CA001', 'Type1','dt1','woi1','ops1','rs1','fd1',0,'fs1','pn1','dcg1'),
+('B002', 150.00, 140.00, 10.00, 30.00, 'TypeB', 'pcs', 'P002', 'OP002', 'Second station', 'Type2', 'Completed', 'EQ002', 'Active', 'Locked', 'Reworked', 'Location2', 'FLOW002', 'PKG002', 'V2.0', 'V2', 'B', 'Normal', '2023-10-02 08:00:00', '2023-10-02 16:00:00', NULL, 'PB002', 'SU002', 'BOM002', 'V2', NULL, 'CA002', 'Type2','dt2','woi2','ops2','rs2','fd2',0,'fs2','pn2','dcg2'),
+('B003', 200.00, 190.00, 10.00, 40.00, 'TypeA', 'pcs', 'P003', 'OP003', 'Third station', 'Type3', 'Pending', 'EQ003', 'Inactive', 'Unlocked', 'None', 'Location3', 'FLOW003', 'PKG003', 'V1.0', 'V3', 'A', 'Hot', '2023-10-03 08:00:00', NULL, '2023-10-03 12:00:00', 'PB003', 'SU003', 'BOM003', 'V3', NULL, 'CA003', 'Type3','dt3','woi3','ops3','rs3','fd3',0,'fs3','pn3','dcg3');
+
+
+-- 重新开启主键检查
+SET FOREIGN_KEY_CHECKS = 1;

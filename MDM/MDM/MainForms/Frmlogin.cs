@@ -13,7 +13,7 @@ namespace MDM.UI.MainForms
         // 登录服务接口实例，用于处理登录逻辑
         private readonly ILoginService _loginService;
         private readonly IFactoryService _factoryService;
-        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=5258;Port=3306;";
+        private const string ConnectionString = "Server=localhost;Database=mdm_db;Uid=root;Pwd=123456;Port=3306;";
 
         // 认证后的用户对象，包含已登录用户的详细信息
         public User AuthenticatedUser { get; private set; }

@@ -84,7 +84,7 @@
             // 
             // splitContainer1
             // 
-            splitContainer1.Location = new Point(48, 127);
+            splitContainer1.Location = new Point(100, 170);
             splitContainer1.Margin = new Padding(5, 6, 5, 6);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -298,7 +298,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(48, 90);
+            label16.Location = new Point(100, 133);
             label16.Name = "label16";
             label16.Size = new Size(134, 31);
             label16.TabIndex = 21;
@@ -307,7 +307,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(577, 90);
+            label17.Location = new Point(629, 133);
             label17.Name = "label17";
             label17.Size = new Size(110, 31);
             label17.TabIndex = 22;
@@ -401,7 +401,7 @@
             createInfoPanel.Controls.Add(label10);
             createInfoPanel.Controls.Add(label12);
             createInfoPanel.Controls.Add(label11);
-            createInfoPanel.Location = new Point(48, 681);
+            createInfoPanel.Location = new Point(100, 724);
             createInfoPanel.Name = "createInfoPanel";
             createInfoPanel.Size = new Size(942, 326);
             createInfoPanel.TabIndex = 30;
@@ -409,7 +409,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(1041, 870);
+            label18.Location = new Point(1093, 913);
             label18.Name = "label18";
             label18.Size = new Size(62, 31);
             label18.TabIndex = 30;
@@ -419,7 +419,7 @@
             // 
             label19.AutoSize = true;
             label19.ForeColor = Color.IndianRed;
-            label19.Location = new Point(1019, 877);
+            label19.Location = new Point(1071, 920);
             label19.Name = "label19";
             label19.Size = new Size(25, 31);
             label19.TabIndex = 31;
@@ -428,7 +428,7 @@
             // textBox8
             // 
             textBox8.BackColor = SystemColors.Window;
-            textBox8.Location = new Point(1132, 870);
+            textBox8.Location = new Point(1184, 913);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(246, 38);
             textBox8.TabIndex = 30;
@@ -437,7 +437,7 @@
             // 
             button1.BackColor = SystemColors.HotTrack;
             button1.ForeColor = SystemColors.ButtonFace;
-            button1.Location = new Point(1228, 943);
+            button1.Location = new Point(1280, 986);
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 31;
@@ -448,7 +448,7 @@
             // 
             button2.BackColor = SystemColors.HotTrack;
             button2.ForeColor = SystemColors.ButtonFace;
-            button2.Location = new Point(1056, 944);
+            button2.Location = new Point(1108, 987);
             button2.Name = "button2";
             button2.Size = new Size(150, 46);
             button2.TabIndex = 30;
@@ -458,7 +458,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(48, 636);
+            label20.Location = new Point(100, 679);
             label20.Name = "label20";
             label20.Size = new Size(110, 31);
             label20.TabIndex = 32;
@@ -468,7 +468,7 @@
             // 
             btnSearch.BackColor = SystemColors.HotTrack;
             btnSearch.ForeColor = SystemColors.ButtonFace;
-            btnSearch.Location = new Point(1296, 27);
+            btnSearch.Location = new Point(1348, 70);
             btnSearch.Margin = new Padding(5, 6, 5, 6);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(131, 48);
@@ -503,7 +503,7 @@
             flowLayoutPanel1.Controls.Add(comboBoxType);
             flowLayoutPanel1.Controls.Add(label3);
             flowLayoutPanel1.Controls.Add(comboBoxDurableId);
-            flowLayoutPanel1.Location = new Point(48, 10);
+            flowLayoutPanel1.Location = new Point(100, 53);
             flowLayoutPanel1.Margin = new Padding(5, 6, 5, 6);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(734, 65);

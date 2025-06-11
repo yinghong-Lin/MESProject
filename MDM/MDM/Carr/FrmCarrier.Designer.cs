@@ -48,13 +48,12 @@ namespace MDM.UI.Carr
             dataGridViewCarriers.AllowUserToAddRows = false;
             dataGridViewCarriers.AllowUserToDeleteRows = false;
             dataGridViewCarriers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCarriers.Dock = DockStyle.Bottom;
-            dataGridViewCarriers.Location = new Point(0, 213);
+            dataGridViewCarriers.Location = new Point(0, 234);
             dataGridViewCarriers.Name = "dataGridViewCarriers";
             dataGridViewCarriers.ReadOnly = true;
             dataGridViewCarriers.RowHeadersWidth = 82;
             dataGridViewCarriers.RowTemplate.Height = 24;
-            dataGridViewCarriers.Size = new Size(1629, 677);
+            dataGridViewCarriers.Size = new Size(1629, 791);
             dataGridViewCarriers.TabIndex = 0;
             // 
             // panel1
@@ -78,7 +77,7 @@ namespace MDM.UI.Carr
             panel1.Controls.Add(comboBoxCarrierType);
             panel1.Controls.Add(cleaningStatustxt);
             panel1.Controls.Add(carrierTypetxt);
-            panel1.Location = new Point(1, 2);
+            panel1.Location = new Point(1, 7);
             panel1.Name = "panel1";
             panel1.Size = new Size(1634, 141);
             panel1.TabIndex = 1;
@@ -255,7 +254,7 @@ namespace MDM.UI.Carr
             // 
             carrierList.AutoSize = true;
             carrierList.Font = new Font("等线", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            carrierList.Location = new Point(12, 167);
+            carrierList.Location = new Point(12, 172);
             carrierList.Name = "carrierList";
             carrierList.Size = new Size(143, 33);
             carrierList.TabIndex = 19;
@@ -265,7 +264,7 @@ namespace MDM.UI.Carr
             // 
             AutoScaleDimensions = new SizeF(18F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1629, 890);
+            ClientSize = new Size(1629, 1025);
             Controls.Add(carrierList);
             Controls.Add(panel1);
             Controls.Add(dataGridViewCarriers);

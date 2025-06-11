@@ -1,0 +1,29 @@
+-- 创建原因代码表
+CREATE TABLE reason_codes (
+    reason_code VARCHAR(50) PRIMARY KEY COMMENT '原因代码',
+    reason_description TEXT COMMENT '原因描述',
+    reason_type VARCHAR(50) COMMENT '原因类型',
+    is_active TINYINT(1) DEFAULT 1 COMMENT '是否激活',
+    factory_id VARCHAR(100) COMMENT '关联的工厂编号',
+    event_user VARCHAR(100) COMMENT '事件用户',
+    event_remark TEXT COMMENT '事件备注',
+    edit_time DATETIME COMMENT '编辑发生时间',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建发生时间',
+    event_type VARCHAR(50) COMMENT '事件'
+) COMMENT='原因代码表，存储返修原因代码信息';
+
+-- 添加外键约束
+ALTER TABLE reason_codes
+ADD FOREIGN KEY (factory_id) REFERENCES factories(factory_id);
+
+-- 插入一些示例原因代码数据
+INSERT INTO reason_codes (reason_code, reason_description, reason_type, is_active, factory_id, event_type)
+VALUES 
+('RC001', '设备故障', 'Equipment', 1, '1', 'create'),
+('RC002', '材料缺陷', 'Material', 1, '1', 'create'),
+('RC003', '操作错误', 'Operation', 1, '1', 'create'),
+('RC004', '工艺参数异常', 'Process', 1, '1', 'create'),
+('RC005', '质量不合格', 'Quality', 1, '1', 'create'),
+('RC006', '环境因素', 'Environment', 1, '1', 'create'),
+('RC007', '测试失败', 'Test', 1, '1', 'create'),
+('RC008', '其他原因', 'Other', 1, '1', 'create');

@@ -1,0 +1,99 @@
+创建设备信息表
+CREATE TABLE `equipment` (
+    `device_id` VARCHAR(50) NOT NULL COMMENT '设备号（主键）',
+    `device_desc` VARCHAR(100) COMMENT '设备说明',
+    `program_name` VARCHAR(50) COMMENT '程序名',
+    `sub_program_name` VARCHAR(50) COMMENT '子程序名',
+    `product_model` VARCHAR(50) COMMENT '设备产品编号',
+    `equipment_sequence` VARCHAR(50) COMMENT '设备顺序名',
+    `current_status` VARCHAR(50) COMMENT '当前状态',
+    `lock_status` VARCHAR(50) COMMENT '锁定状态',
+    `device_type` VARCHAR(50) COMMENT '设备类型',
+    `detail_type` VARCHAR(50) COMMENT '详细类型',
+    `carrier` VARCHAR(50) COMMENT '载具',
+    `communication_status` VARCHAR(50) COMMENT '通信状态',
+    `equipment_status` VARCHAR(50) COMMENT '设备状态',
+    `equipment_group` VARCHAR(50) COMMENT '设备组',
+    `equipment_model` VARCHAR(50) COMMENT '设备型号',
+    `detail_equipment_type` VARCHAR(50) COMMENT '详细设备类型',
+    `waiting_capacity` INT COMMENT '等待容量',
+    `manufacturing_qty` INT COMMENT '制程数量',
+    `alarm_qty` INT COMMENT '报警数量',
+    `front_photo` VARCHAR(255) COMMENT '前件检（可存路径或标识）',
+    `product_desc` VARCHAR(255) COMMENT '产品说明',
+    `plan_qty` INT COMMENT '计划数量',
+    `received_qty` INT COMMENT '接收数量',
+    `cleaning_program_no` VARCHAR(50) COMMENT '清洁程序号',
+    `epr_id` VARCHAR(50) COMMENT 'EPR ID',
+    `finished_work_order_no` VARCHAR(50) COMMENT '成员工单号',
+    `mother_batch` VARCHAR(50) COMMENT '母批',
+    `sealing_form` VARCHAR(50) COMMENT '封装形式',
+    `company_code` VARCHAR(50) COMMENT '公司号',
+    `work_type` VARCHAR(50) COMMENT '工作类型',
+    `grinding_thickness` VARCHAR(50) COMMENT '磨片厚度',
+    `work_order_desc` VARCHAR(255) COMMENT '工单说明',
+    PRIMARY KEY (`device_id`)
+) COMMENT='设备信息主表，整合设备、产品、工单相关字段';
+插入数据
+INSERT INTO `equipment` (
+    `device_id`, `device_desc`, `program_name`, `sub_program_name`, 
+    `product_model`, `equipment_sequence`, `current_status`, `lock_status`, 
+    `device_type`, `detail_type`, `carrier`, `communication_status`, 
+    `equipment_status`, `equipment_group`, `equipment_model`, `detail_equipment_type`, 
+    `waiting_capacity`, `manufacturing_qty`, `alarm_qty`, `front_photo`, 
+    `product_desc`, `plan_qty`, `received_qty`, `cleaning_program_no`, 
+    `epr_id`, `finished_work_order_no`, `mother_batch`, `sealing_form`, 
+    `company_code`, `work_type`, `grinding_thickness`, `work_order_desc`
+) 
+VALUES 
+-- 数据 1：产线设备 A
+('EQUIP-001', '晶圆切割机', 'MainProgram_v1.0', 'SubPro_A', 
+ 'PROD-202501', 'SEQ-01', '运行中', '未锁定', 
+ '切割设备', '精密机械', 'CAR-001', '正常', 
+ '在线', 'GROUP-A', 'MODEL-X100', '切割机类型1', 
+ 5, 100, 0, 'path/photo_001.jpg', 
+ '8英寸晶圆切割', 500, 400, 'CLEAN-001', 
+ 'EPR-20250601', 'WO-202506-01', 'BATCH-001', '真空封装', 
+ 'COM-01', '生产', '0.1mm', '切割工单 - 产品A'),
+
+-- 数据 2：检测设备 B
+('EQUIP-002', '光学检测仪', 'VisionPro_v2.1', 'SubPro_B', 
+ 'PROD-202502', 'SEQ-02', '待机', '未锁定', 
+ '检测设备', '光学检测', 'CAR-002', '正常', 
+ '在线', 'GROUP-B', 'MODEL-V200', '检测仪类型2', 
+ 3, 80, 0, 'path/photo_002.jpg', 
+ '芯片外观检测', 300, 250, 'CLEAN-002', 
+ 'EPR-20250602', 'WO-202506-02', 'BATCH-002', '气密封装', 
+ 'COM-01', '检测', '0.05mm', '检测工单 - 产品B'),
+
+-- 数据 3：老化设备 C
+('EQUIP-003', '高温老化箱', 'AgePro_v3.0', 'SubPro_C', 
+ 'PROD-202503', 'SEQ-03', '运行中', '锁定', 
+ '老化设备', '热处理', 'CAR-003', '正常', 
+ '在线', 'GROUP-C', 'MODEL-A300', '老化箱类型3', 
+ 4, 120, 1, 'path/photo_003.jpg', 
+ '芯片高温老化', 400, 350, 'CLEAN-003', 
+ 'EPR-20250603', 'WO-202506-03', 'BATCH-003', '塑封', 
+ 'COM-01', '老化', '0.2mm', '老化工单 - 产品C'),
+
+-- 数据 4：封装设备 D
+('EQUIP-004', '自动封装机', 'PackPro_v4.0', 'SubPro_D', 
+ 'PROD-202504', 'SEQ-04', '待机', '未锁定', 
+ '封装设备', '自动化', 'CAR-004', '正常', 
+ '在线', 'GROUP-D', 'MODEL-P400', '封装机类型4', 
+ 6, 150, 0, 'path/photo_004.jpg', 
+ '芯片最终封装', 600, 500, 'CLEAN-004', 
+ 'EPR-20250604', 'WO-202506-04', 'BATCH-004', '金属封装', 
+ 'COM-01', '封装', '0.15mm', '封装工单 - 产品D');
+
+
+创建报废信息表
+CREATE TABLE scrapped_info (
+    ID INT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+    type VARCHAR(20) NOT NULL COMMENT '类型',  
+    device_id VARCHAR(50) NOT NULL COMMENT '设备号',
+    code VARCHAR(50) NOT NULL COMMENT '代码',
+    defect_count INT NOT NULL COMMENT '不良数',
+    code_description TEXT NOT NULL COMMENT '代码说明',
+    code_group_number VARCHAR(50) NOT NULL COMMENT '代码组号'
+);

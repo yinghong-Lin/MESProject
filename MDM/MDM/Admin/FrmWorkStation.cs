@@ -7,7 +7,7 @@ namespace MDM.UI.Admin
 {
     public partial class FrmWorkStation : Form
     {
-        private string connectionString = "server=localhost;user=root;password=@nykl2279168;database=mdm_db"; // 替换你的数据库连接信息
+        private string connectionString = "server=localhost;user=root;password=123456;database=mdm_db"; // 替换你的数据库连接信息
 
         public FrmWorkStation()
         {

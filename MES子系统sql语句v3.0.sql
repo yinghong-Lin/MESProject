@@ -181,7 +181,7 @@ VALUES
 (11, '在制品', 'p', NULL, 0, NULL, NULL, NULL, NOW(), NULL),
 (12, '进出站', 'p', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
 (13, '单批次进站', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
-(14, '单批次出战', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
+(14, '单批次出站', 'c', NULL, 12, NULL, NULL, NULL, NOW(), NULL),
 (15, '跳工站', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
 (16, '生产返修', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),
 (24, '主页面', 'c', NULL, 11, NULL, NULL, NULL, NOW(), NULL),

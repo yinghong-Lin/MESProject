@@ -460,5 +460,15 @@ namespace MDM.UI.Process
         {
             // 保留原有的事件处理器
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,81 @@
+-- 创建设备状态表
+CREATE TABLE EquipmentStatus (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    DeviceNumber VARCHAR(50) NOT NULL,
+    DeviceDescription VARCHAR(100),
+    ProgramName VARCHAR(50),
+    SubprogramName VARCHAR(50),
+    DeviceProductNumber VARCHAR(50),
+    DeviceProgramName VARCHAR(50),
+    Status VARCHAR(50),
+    DetailedStatus VARCHAR(100),
+    DeviceType VARCHAR(50),
+    DetailedType VARCHAR(100),
+    CommunicationStatus VARCHAR(50)
+);
+-- 插入数据
+INSERT INTO EquipmentStatus (
+    DeviceNumber,
+    DeviceDescription,
+    ProgramName,
+    SubprogramName,
+    DeviceProductNumber,
+    DeviceProgramName,
+    Status,
+    DetailedStatus,
+    DeviceType,
+    DetailedType,
+    CommunicationStatus
+) VALUES 
+(
+    'Device001',
+    '生产机器1',
+    'ProgramA',
+    'SubprogramA1',
+    'DPN001',
+    'DProgram1',
+    'Running',
+    'Normal operation',
+    'Manufacturing',
+    'TypeA',
+    'Connected'
+),
+(
+    'Device002',
+    '包装机器1',
+    'ProgramB',
+    'SubprogramB1',
+    'DPN002',
+    'DProgram2',
+    'Idle',
+    'Waiting for task',
+    'Packaging',
+    'TypeB',
+    'Connected'
+),
+(
+    'Device003',
+    '检测机器1',
+    'ProgramC',
+    'SubprogramC1',
+    'DPN003',
+    'DProgram3',
+    'Maintenance',
+    'Undergoing maintenance',
+    'Inspection',
+    'TypeC',
+    'Disconnected'
+),
+(
+    'Device004',
+    '仓储机器1',
+    'ProgramD',
+    'SubprogramD1',
+    'DPN004',
+    'DProgram4',
+    'Standby',
+    'In standby mode',
+    'Storage',
+    'TypeD',
+    'Connected'
+);
