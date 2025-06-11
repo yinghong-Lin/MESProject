@@ -1,3 +1,11 @@
+-- 关闭主键检查
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 删除原有表（如果存在）
+DROP TABLE IF EXISTS material;
+DROP TABLE IF EXISTS MaterialInfo;
+DROP TABLE IF EXISTS material_creation;
+
 -- 创建新表
 CREATE TABLE `material` (
     `物料号` VARCHAR(255) NOT NULL,
@@ -26,3 +34,58 @@ INSERT INTO `material` (`物料号`, `物料描述`, `物料类型`, `详细类�
 ('1001-00001-114', '贴片电容2.2uF', 'Consumable', 'Cap', '贴片电容2.2uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
 ('1001-00001-126', '贴片电容(POSCAP)', 'Consumable', 'Cap', '贴片电容(POSCAP)', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL),
 ('1001-00001-138', '铝电解100uF', 'Consumable', 'Cap', '铝电解100uF', 'EA', 'Cap', 1.001, NULL, NULL, NULL, NULL);
+
+-- 创建 `MaterialInfo` 表
+CREATE TABLE MaterialInfo (
+    物料批次号 VARCHAR(50) PRIMARY KEY COMMENT '物料批次号',
+    物料号 VARCHAR(50) NOT NULL COMMENT '物料号',
+    物料类型 VARCHAR(50) NOT NULL COMMENT '物料类型',
+    详细物料类型 VARCHAR(50) COMMENT '详细物料类型',
+    物料单位 VARCHAR(50) COMMENT '物料单位',
+	数量 INT COMMENT '数量',
+	区域 VARCHAR(50) COMMENT '区域',
+	设备号 VARCHAR(50) COMMENT '设备号'
+);
+
+INSERT INTO MaterialInfo (物料批次号, 物料号, 物料类型, 详细物料类型, 物料单位, 数量, 区域, 设备号)
+VALUES 
+('BATCH001', 'MAT001', '原材料', '硅片', 'PCS', 100, '仓库A', 'EQUIP-001'),
+('BATCH002', 'MAT002', '辅料', '化学试剂', 'LITER', 50, '实验室B', 'EQUIP-002'),
+('BATCH003', 'MAT003', '包装材料', '塑料托盘', 'SET', 200, '生产区C', 'EQUIP-003');
+
+
+-- 创建表（如果不存在）
+CREATE TABLE IF NOT EXISTS material_creation (
+    `物料批次号` VARCHAR(255) NOT NULL,
+    `物料号` VARCHAR(255) NOT NULL,
+    `物料类型` VARCHAR(255) NOT NULL,
+    `详细类型` VARCHAR(255) NOT NULL,
+    `数量` INT NOT NULL,
+    `单位` VARCHAR(255) NOT NULL,
+    `供应商号` VARCHAR(255) DEFAULT NULL,
+    `位置` VARCHAR(255) DEFAULT NULL
+);
+
+-- 插入新数据
+INSERT INTO material_creation (
+    `物料批次号`, 
+    `物料号`, 
+    `物料类型`, 
+    `详细类型`, 
+    `数量`, 
+    `单位`, 
+    `供应商号`, 
+    `位置`
+) VALUES (
+    'CONS-2006020003',  -- 新的物料批次号
+    '1001-00001-044',  -- 新的物料号
+    'Consumable', 
+    'Cap', 
+    200, 
+    'EA', 
+    NULL, 
+    NULL
+);
+
+-- 重新开启主键检查
+SET FOREIGN_KEY_CHECKS = 1;
